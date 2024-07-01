@@ -1,0 +1,72 @@
+<?php
+
+namespace TK\GitHubWebhook\Model;
+
+use TK\GitHubWebhook\Model\Issue\LockReason;
+use TK\GitHubWebhook\Model\Issue\IssueState;
+use TK\GitHubWebhook\Model\Issue\AuthorAssociation;
+use TK\GitHubWebhook\Model\Issue\PullRequestLite;
+
+readonly class Issue
+{
+    public string $url;
+    public string $repository_url;
+    public string $labels_url;
+    public string $comments_url;
+    public string $events_url;
+    public string $html_url;
+    public int $id;
+    public string $node_id;
+    public int $number;
+    public string $title;
+    public User $user;
+    /** @var User[] $assignees */
+    public array $assignees;
+    public Milestone|null $milestone;
+    public int $comments;
+    public string $created_at;
+    public string $updated_at;
+    public string|null $closed_at;
+    public AuthorAssociation $author_association;
+    public LockReason|null $active_lock_reason;
+    public string|null $body;
+    public Reactions $reactions;
+
+    public bool|null $draft;
+    public App|null $performed_via_github_app;
+    /** @var Label[] $labels */
+    public array|null $labels;
+    public IssueState|null $state;
+    public bool|null $locked;
+    public User|null $assignee;
+    public PullRequestLite|null $pull_request;
+    public string|null $timeline_url;
+    public string|null $state_reason;
+
+    public static function fromArray(array $data): Issue
+    {
+        $instance = new Issue();
+        $instance->url = $data["url"];
+        $instance->repository_url = $data["repository_url"];
+        $instance->labels_url = $data["labels_url"];
+        $instance->comments_url = $data["comments_url"];
+        $instance->html_url = $data["html_url"];
+        $instance->id = $data["id"];
+        $instance->node_id = $data["node_id"];
+        $instance->number = $data["number"];
+        $instance->title = $data["title"];
+        $instance->user = User::fromArray($data["user"]);
+        $instance->assignees = array_map(function ($entry) {
+            return User::fromArray($entry);
+        }, $data["assignees"]);
+        $instance->milestone = array_key_exists("milestone", $data) ? Milestone::fromArray($data["milestone"]) : null;
+        $instance->comments = $data["comments"];
+        $instance->created_at = $data["created_at"];
+        $instance->updated_at = $data["updated_at"];
+        $instance->closed_at = $data["closed_at"] ?? null;
+        $instance->author_association = AuthorAssociation::from($data["author_association"]);
+        $instance->active_lock_reason = LockReason::tryFrom($data["active_lock_reason"]);
+        $instance->body = $data["body"] ?? null;
+        return $instance;
+    }
+}

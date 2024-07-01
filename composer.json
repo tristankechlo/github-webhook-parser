@@ -1,0 +1,25 @@
+{
+    "name": "tristankechlo/github-webhook-parser",
+    "description": "can parse a recieved json from github's webhook service",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "TK\\GitHubWebhook\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Tristan Kechlo"
+        }
+    ],
+    "support": {
+        "source": "https://github.com/tristankechlo/github-webhook-parser",
+        "issues": "https://github.com/tristankechlo/github-webhook-parser/issues"
+    },
+    "require": {
+        "php": ">=8.2"
+    },
+    "config": {
+        "optimize-autoloader": true
+    }
+}
