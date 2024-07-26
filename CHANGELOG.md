@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.2 - 2024-07-26
+
+- combine inputs into Request class
+
 ## 1.1.1 - 2024-07-26
 
 - add option to register handler that get's executed when the event is unknown

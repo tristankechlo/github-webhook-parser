@@ -47,14 +47,14 @@ class WebhookHandler
         $this->event_not_found_handler = $handler;
     }
 
-    private function readHeaders(array $json)
+    private function readHeaders(array $json, string $json_raw)
     {
         $event_raw = $_SERVER['HTTP_X_GITHUB_EVENT'];
         try {
             $this->event = EventTypes::from($event_raw);
         } catch (\Throwable $e) {
             if ($this->event_not_found_handler !== null) {
-                $response = $this->event_not_found_handler->handleEvent($event_raw, $json, new Response());
+                $response = $this->event_not_found_handler->handleEvent($event_raw, $json, $json_raw, new Response());
                 $this->exit($response);
             }
             throw new WebhookException("Event '" . $event_raw . "' is not yet supported!");
@@ -66,13 +66,13 @@ class WebhookHandler
     public function handle(): never
     {
         // read json from request body
-        $json = $this->readAndVerifyJson();
+        [$json_raw, $json] = $this->readAndVerifyJson();
         if ($json === null or !is_array($json)) {
             throw new WebhookParseException("Data was not read correctly!");
         }
 
         // read needed request headers
-        $this->readHeaders($json);
+        $this->readHeaders($json, $json_raw);
 
         // parse json into corresponding classes
         $input = $this->parse((array) $json);
@@ -89,12 +89,13 @@ class WebhookHandler
             $target_handlers[] = new DefaultHandler();
         }
 
+        $request = new Request($this->event, $input, $json_raw);
         $response = new Response();
         foreach ($target_handlers as $handler) {
             if (!($handler instanceof EventHandlerInterface)) {
                 throw new WebhookException("Registered handler '" . get_class($handler) . "' is not of correct type 'EventHandlerInterface'.");
             }
-            $response = $handler->handleEvent($this->event, $input, $response);
+            $response = $handler->handleEvent($request, $response);
         }
 
         $this->exit($response);
@@ -112,7 +113,7 @@ class WebhookHandler
             $this->verifySignature($json_raw, $this->secret);
         }
 
-        return json_decode($json_raw, true);
+        return [$json_raw, json_decode($json_raw, true)];
     }
 
     private function verifySignature(string $json_raw, string $token): void
