@@ -10,11 +10,8 @@ readonly class PullRequestLite
     public string $patch_url;
     public string|null $merged_at;
 
-    public static function fromArray(array $data): PullRequestLite|null
+    public static function fromArray(array $data): PullRequestLite
     {
-        if(empty($data)) {
-            return null;
-        }
         $instance = new PullRequestLite();
         $instance->url = $data["url"];
         $instance->html_url = $data["html_url"];

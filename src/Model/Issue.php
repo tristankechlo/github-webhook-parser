@@ -6,6 +6,7 @@ use TK\GitHubWebhook\Model\Issue\LockReason;
 use TK\GitHubWebhook\Model\Issue\IssueState;
 use TK\GitHubWebhook\Model\Issue\AuthorAssociation;
 use TK\GitHubWebhook\Model\Issue\PullRequestLite;
+use TK\GitHubWebhook\Util;
 
 readonly class Issue
 {
@@ -55,10 +56,8 @@ readonly class Issue
         $instance->number = $data["number"];
         $instance->title = $data["title"];
         $instance->user = User::fromArray($data["user"]);
-        $instance->assignees = array_map(function ($entry) {
-            return User::fromArray($entry);
-        }, $data["assignees"]);
-        $instance->milestone = array_key_exists("milestone", $data) ? Milestone::fromArray($data["milestone"]) : null;
+        $instance->assignees = Util::getArray($data, "assignees", User::fromArray(...));
+        $instance->milestone = Util::getArgSafe($data, "milestone", Milestone::fromArray(...));
         $instance->comments = $data["comments"];
         $instance->created_at = $data["created_at"];
         $instance->updated_at = $data["updated_at"];
@@ -68,17 +67,12 @@ readonly class Issue
         $instance->body = $data["body"] ?? null;
         $instance->reactions = Reactions::fromArray($data["reactions"]);
         $instance->draft = $data["draft"] ?? null;
-        $instance->performed_via_github_app = array_key_exists("performed_via_github_app", $data) ? App::fromArray($data["performed_via_github_app"]) : null;
-        $instance->labels = null;
-        if(array_key_exists("labels", $data) and !empty($data["labels"])) {
-            $instance->labels = array_map(function ($entry) {
-                return Label::fromArray($entry);
-            }, $data["labels"]);
-        }
+        $instance->performed_via_github_app = Util::getArgSafe($data, "performed_via_github_app", App::fromArray(...));
+        $instance->labels = Util::getArraySafe($data, "labels", Label::fromArray(...));
         $instance->state = IssueState::tryFrom($data["state"]);
         $instance->locked = $data["locked"] ?? null;
-        $instance->assignee = $data["assignee"] ?? null;
-        $instance->pull_request = array_key_exists("pull_request", $data) ? PullRequestLite::fromArray($data["pull_request"]) : null;
+        $instance->assignee = Util::getArgSafe($data, "assignee", User::fromArray(...));
+        $instance->pull_request = Util::getArgSafe($data, "pull_request", PullRequestLite::fromArray(...));
         $instance->timeline_url = $data["timeline_url"] ?? null;
         $instance->state_reason = $data["state_reason"] ?? null;
         return $instance;

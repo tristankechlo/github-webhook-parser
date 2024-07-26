@@ -8,7 +8,7 @@ readonly class LastResponse
     public string $status;
     public null $message;
 
-    public static function fromArray(?array $data): LastResponse
+    public static function fromArray(array $data): LastResponse
     {
         $instance = new LastResponse();
         $instance->code = $data["code"];

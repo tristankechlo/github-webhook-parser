@@ -10,11 +10,8 @@ readonly class License
     public string|null $url;
     public string $node_id;
 
-    public static function fromArray(array|null $data): License|null
+    public static function fromArray(array $data): License
     {
-        if (empty($data)) {
-            return null;
-        }
         $instance = new License();
         $instance->key = $data["key"];
         $instance->name = $data["name"];

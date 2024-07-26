@@ -2,6 +2,8 @@
 
 namespace TK\GitHubWebhook\Model;
 
+use TK\GitHubWebhook\Util;
+
 enum RepositoryVisibility: string
 {
     case PUBLIC = "public";
@@ -181,7 +183,7 @@ readonly class Repository
         $instance->archived = $data["archived"];
         $instance->disabled = $data["disabled"] ?? null;
         $instance->open_issues_count = $data["open_issues_count"];
-        $instance->license = array_key_exists("license", $data) ? License::fromArray($data["license"]) : null;
+        $instance->license = Util::getArgSafe($data, "license", License::fromArray(...));
         $instance->forks = $data["forks"];
         $instance->open_issues = $data["open_issues"];
         $instance->watchers = $data["watchers"];
@@ -204,7 +206,7 @@ readonly class Repository
         $instance->visibility = RepositoryVisibility::from($data["visibility"]);
         $instance->delete_branch_on_merge = $data["delete_branch_on_merge"] ?? null;
         $instance->master_branch = $data["master_branch"] ?? null;
-        $instance->permissions = array_key_exists("permissions", $data) ? RepositoryPermissions::fromArray($data["permissions"]) : null;
+        $instance->permissions = Util::getArgSafe($data, "permissions", RepositoryPermissions::fromArray(...));
         $instance->public = $data["public"] ?? null;
         $instance->organization = $data["organization"] ?? null;
         $instance->custom_properties = $data["custom_properties"] ?? null;

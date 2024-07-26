@@ -10,11 +10,8 @@ readonly class RepositoryPermissions
     public bool|null $maintain;
     public bool|null $triage;
 
-    public static function fromArray(array|null $data): RepositoryPermissions|null
+    public static function fromArray(array $data): RepositoryPermissions
     {
-        if (empty($data)) {
-            return null;
-        }
         $instance = new RepositoryPermissions();
         $instance->push = $data["push"];
         $instance->pull = $data["pull"];

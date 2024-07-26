@@ -2,6 +2,8 @@
 
 namespace TK\GitHubWebhook\Model\Ping;
 
+use TK\GitHubWebhook\Util;
+
 enum WebhookType: string
 {
     case REPOSITORY = "Repository";
@@ -43,7 +45,7 @@ readonly class Webhook
         $instance->test_url = $data["test_url"] ?? null;
         $instance->ping_url = $data["ping_url"];
         $instance->deliveries_url = $data["deliveries_url"];
-        $instance->last_response = array_key_exists("last_response", $data) ? LastResponse::fromArray($data["last_response"]) : null;
+        $instance->last_response = Util::getArgSafe($data, "last_response", LastResponse::fromArray(...));
         return $instance;
     }
 }

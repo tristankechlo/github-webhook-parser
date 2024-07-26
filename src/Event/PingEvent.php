@@ -4,6 +4,7 @@ namespace TK\GitHubWebhook\Event;
 
 use TK\GitHubWebhook\Model\Ping\{Webhook};
 use TK\GitHubWebhook\Model\{User, Repository};
+use TK\GitHubWebhook\Util;
 
 class PingEvent extends AbstractEvent
 {
@@ -13,9 +14,9 @@ class PingEvent extends AbstractEvent
 
     public static function fromArray(array $data): PingEvent
     {
-        $repository = array_key_exists("repository", $data) ? Repository::fromArray($data["repository"]) : null;
-        $sender = array_key_exists("sender", $data) ? User::fromArray($data["sender"]) : null;
-        $organization = array_key_exists("organization", $data) ? User::fromArray($data["organization"]) : null;
+        $repository = Util::getArgSafe($data, "repository", Repository::fromArray(...));
+        $sender = Util::getArgSafe($data, "sender", User::fromArray(...));
+        $organization = Util::getArgSafe($data, "organization", User::fromArray(...));
 
         $instance = new PingEvent($repository, $sender, $organization);
         $instance->zen = $data["zen"];

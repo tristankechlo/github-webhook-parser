@@ -11,6 +11,7 @@ use TK\GitHubWebhook\Model\Label;
 use TK\GitHubWebhook\Model\Milestone;
 use TK\GitHubWebhook\Model\Repository;
 use TK\GitHubWebhook\Model\User;
+use TK\GitHubWebhook\Util;
 
 class IssueEvent extends AbstractEvent
 {
@@ -24,18 +25,18 @@ class IssueEvent extends AbstractEvent
 
     public static function fromArray(array $data): IssueEvent
     {
-        $repository = array_key_exists("repository", $data) ? Repository::fromArray($data["repository"]) : null;
-        $sender = array_key_exists("sender", $data) ? User::fromArray($data["sender"]) : null;
-        $organization = array_key_exists("organization", $data) ? User::fromArray($data["organization"]) : null;
+        $repository = Util::getArgSafe($data, "repository", Repository::fromArray(...));
+        $sender = Util::getArgSafe($data, "sender", User::fromArray(...));
+        $organization = Util::getArgSafe($data, "organization", User::fromArray(...));
 
         $instance = new IssueEvent($repository, $sender, $organization);
         $instance->action = IssueState::from($data["action"]);
         $instance->issue = Issue::fromArray($data["issue"]);
-        $instance->assignee = array_key_exists("assignee", $data) ? User::fromArray($data["assignee"]) : null;
-        $instance->installation = array_key_exists("installation", $data) ? InstallationLite::fromArray($data["installation"]) : null;
-        $instance->milestone = array_key_exists("milestone", $data) ? Milestone::fromArray($data["milestone"]) : null;
-        $instance->label = array_key_exists("label", $data) ? Label::fromArray($data["label"]) : null;
-        $instance->changes = array_key_exists("changes", $data) ? Changes::fromArray($data["changes"]) : null;
+        $instance->assignee = Util::getArgSafe($data, "assignee", User::fromArray(...));
+        $instance->installation = Util::getArgSafe($data, "installation", InstallationLite::fromArray(...));
+        $instance->milestone = Util::getArgSafe($data, "milestone", Milestone::fromArray(...));
+        $instance->label = Util::getArgSafe($data, "label", Label::fromArray(...));
+        $instance->changes = Util::getArgSafe($data, "changes", Changes::fromArray(...));
         return $instance;
     }
 }
