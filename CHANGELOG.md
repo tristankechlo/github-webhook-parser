@@ -5,6 +5,7 @@
 - support for all `issue` events
 - support for all `pull_request` events
 - support for the `fork` event
+- support for the `push` event
 
 ## 1.0.0 - 2024-07-25
 

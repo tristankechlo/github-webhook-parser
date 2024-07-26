@@ -8,6 +8,7 @@ can parse a recieved json from github's webhook service
 - all issue events
 - all pull_request events
 - fork
+- push
 
 ## Source
 
