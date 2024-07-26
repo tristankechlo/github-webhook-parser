@@ -10,6 +10,7 @@ can parse a recieved json from github's webhook service
 - fork
 - push
 - star
+- watch
 
 ## Source
 

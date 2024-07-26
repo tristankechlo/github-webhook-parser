@@ -11,4 +11,5 @@ enum EventType: string
     case FORK = "fork";
     case PUSH = "push";
     case STAR = "star";
+    case WATCH = "watch";
 }

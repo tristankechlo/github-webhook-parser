@@ -7,6 +7,7 @@
 - support for the `fork` event
 - support for the `push` event
 - support for the `star` event
+- support for the `watch` event
 
 ## 1.0.0 - 2024-07-25
 
