@@ -1,0 +1,31 @@
+<?php
+
+namespace TK\GitHubWebhook\Model\PullRequest;
+
+use TK\GitHubWebhook\Model\User;
+use TK\GitHubWebhook\Util;
+
+enum MergeMethod: string
+{
+    case MERGE = "merge";
+    case SQUASH = "squash";
+    case REBASE = "rebase";
+}
+
+readonly class PullRequestAutoMerge
+{
+    public User|null $enabled_by;
+    public MergeMethod $merge_method;
+    public string|null $commit_title;
+    public string|null $commit_message;
+
+    public static function fromArray(array $data): PullRequestAutoMerge
+    {
+        $instance = new PullRequestAutoMerge();
+        $instance->enabled_by = Util::getArgSafe($data, "enabled_by", User::fromArray(...));
+        $instance->merge_method = MergeMethod::from($data["merge_method"]);
+        $instance->commit_title = $data["commit_title"] ?? null;
+        $instance->commit_message = $data["commit_message"] ?? null;
+        return $instance;
+    }
+}

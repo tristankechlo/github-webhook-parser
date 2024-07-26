@@ -6,6 +6,7 @@ can parse a recieved json from github's webhook service
 
 - ping
 - all issue events
+- all pull_request events
 
 ## Source
 
