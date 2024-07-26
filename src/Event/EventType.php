@@ -8,4 +8,5 @@ enum EventType: string
     case PING = "ping";
     case ISSUE = "issue";
     case PULL_REQUEST = "pull_request";
+    case FORK = "fork";
 }

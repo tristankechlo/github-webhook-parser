@@ -2,8 +2,9 @@
 
 ## 1.1.0 - 2024-07-26
 
-- support for the event `issue`
-- support for the event `pull_request`
+- support for all `issue` events
+- support for all `pull_request` events
+- support for the `fork` event
 
 ## 1.0.0 - 2024-07-25
 

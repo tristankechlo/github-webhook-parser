@@ -15,7 +15,6 @@ use TK\GitHubWebhook\Util;
 
 class PullRequestEvent extends AbstractEvent
 {
-
     public EventTypes $action;
     public int $number;
     public PullRequest $pull_request;
