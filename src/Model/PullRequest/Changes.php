@@ -7,9 +7,9 @@ use TK\GitHubWebhook\Util;
 
 readonly class Changes
 {
-    public From $body;
-    public From $title;
-    public ChangesBase $base;
+    public From|null $body;
+    public From|null $title;
+    public ChangesBase|null $base;
 
     public static function fromArray(array $data): Changes
     {

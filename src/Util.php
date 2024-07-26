@@ -20,11 +20,11 @@ class Util
         return null;
     }
 
-    public static function getArraySafe(array $data, string $key, mixed $callback): array|null
+    public static function getArraySafe(array $data, string $key, mixed $callback, mixed $default = null): array|null
     {
         if (array_key_exists($key, $data) and !empty($data[$key]) and is_array($data[$key])) {
             return Util::getArray($data, $key, $callback);
         }
-        return null;
+        return $default;
     }
 }

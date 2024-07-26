@@ -2,11 +2,11 @@
 
 namespace TK\GitHubWebhook\Event;
 
-enum EventType: string
+enum EventTypes: string
 {
     case ALL = "all";
     case PING = "ping";
-    case ISSUE = "issue";
+    case ISSUE = "issues";
     case PULL_REQUEST = "pull_request";
     case FORK = "fork";
     case PUSH = "push";

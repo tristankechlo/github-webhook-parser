@@ -20,7 +20,7 @@ class PushEvent extends AbstractEvent
     public string|null $base_ref;
     public string $compare;
     /** @var Commit[] $commits */
-    public array $commits;
+    public array|null $commits;
     public Commit|null $head_commit;
     public Committer $pusher;
     public InstallationLite|null $installation;

@@ -19,7 +19,7 @@ class PullRequestEvent extends AbstractEvent
     public int $number;
     public PullRequest $pull_request;
     public User|null $assignee;
-    public string $reason;
+    public string|null $reason;
     public InstallationLite|null $installation;
     public Milestone|null $milestone;
     public Changes|null $changes;
@@ -40,7 +40,7 @@ class PullRequestEvent extends AbstractEvent
         $instance->number = $data["number"];
         $instance->pull_request = PullRequest::fromArray($data["pull_request"]);
         $instance->assignee = Util::getArgSafe($data, "assignee", User::fromArray(...));
-        $instance->reason = $data["reason"];
+        $instance->reason = $data["reason"] ?? null;
         $instance->installation = Util::getArgSafe($data, "installation", InstallationLite::fromArray(...));
         $instance->milestone = Util::getArgSafe($data, "milestone", Milestone::fromArray(...));
         $instance->changes = Util::getArgSafe($data, "changes", Changes::fromArray(...));

@@ -3,7 +3,7 @@
 namespace TK\GitHubWebhook;
 
 use TK\GitHubWebhook\Event\AbstractEvent;
-use TK\GitHubWebhook\Event\EventType;
+use TK\GitHubWebhook\Event\EventTypes;
 use TK\GitHubWebhook\Exception\SignatureMismatchException;
 use TK\GitHubWebhook\Exception\WebhookException;
 use TK\GitHubWebhook\Exception\WebhookParseException;
@@ -13,7 +13,7 @@ use TK\GitHubWebhook\Handler\EventHandlerInterface;
 
 class WebhookHandler
 {
-    private EventType $event;
+    private EventTypes $event;
     private string|null $secret = null;
     /** @var \TK\GitHubWebhook\Handler\EventHandlerInterface[] $handler */
     private array $handler = [];
@@ -21,7 +21,7 @@ class WebhookHandler
     public function __construct()
     {
         try {
-            $this->event = EventType::from($_SERVER['HTTP_X_GITHUB_EVENT']);
+            $this->event = EventTypes::from($_SERVER['HTTP_X_GITHUB_EVENT']);
         } catch (\Throwable $e) {
             throw new WebhookException("Event '" . $_SERVER['HTTP_X_GITHUB_EVENT'] . "' is not yet supported!");
         }
@@ -56,7 +56,7 @@ class WebhookHandler
 
         // get correct handler
         $target_handlers = array_filter($this->handler, function (EventHandlerInterface $e) {
-            return in_array(EventType::ALL, $e->getTargetEvent()) or in_array($this->event, $e->getTargetEvent());
+            return in_array(EventTypes::ALL, $e->getTargetEvent()) or in_array($this->event, $e->getTargetEvent());
         });
         // add default handler if none found
         if (count($target_handlers) === 0) {

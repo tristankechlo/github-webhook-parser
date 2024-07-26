@@ -6,7 +6,7 @@ readonly class Label
 {
     public int $id;
     public string $node_id;
-    public int $url;
+    public string $url;
     public string $name;
     public string|null $description;
     public string $color;

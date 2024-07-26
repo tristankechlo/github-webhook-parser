@@ -13,7 +13,7 @@ use TK\GitHubWebhook\Model\Repository;
 use TK\GitHubWebhook\Model\User;
 use TK\GitHubWebhook\Util;
 
-class IssueEvent extends AbstractEvent
+class IssuesEvent extends AbstractEvent
 {
     public EventTypes $action;
     public Issue $issue;
@@ -23,13 +23,13 @@ class IssueEvent extends AbstractEvent
     public Label|null $label;
     public Changes|null $changes;
 
-    public static function fromArray(array $data): IssueEvent
+    public static function fromArray(array $data): IssuesEvent
     {
         $repository = Util::getArgSafe($data, "repository", Repository::fromArray(...));
         $sender = Util::getArgSafe($data, "sender", User::fromArray(...));
         $organization = Util::getArgSafe($data, "organization", User::fromArray(...));
 
-        $instance = new IssueEvent($repository, $sender, $organization);
+        $instance = new IssuesEvent($repository, $sender, $organization);
         $instance->action = EventTypes::from($data["action"]);
         $instance->issue = Issue::fromArray($data["issue"]);
         $instance->assignee = Util::getArgSafe($data, "assignee", User::fromArray(...));

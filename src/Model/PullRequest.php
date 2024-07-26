@@ -61,7 +61,7 @@ readonly class PullRequest
     public Target $base;
     public Links $_links;
     public AuthorAssociation $author_association;
-    public AutoMerge $auto_merge;
+    public AutoMerge|null $auto_merge;
     public ActiveLockReason|null $active_lock_reason;
     public bool $draft;
     public bool|null $merged;
@@ -99,10 +99,10 @@ readonly class PullRequest
         $instance->merged_at = $data["merged_at"] ?? null;
         $instance->merge_commit_sha = $data["merge_commit_sha"] ?? null;
         $instance->assignee = Util::getArgSafe($data, "assignee", User::fromArray(...));
-        $instance->assignees = Util::getArraySafe($data, "assignees", User::fromArray(...));
+        $instance->assignees = Util::getArraySafe($data, "assignees", User::fromArray(...), []);
         $instance->requested_reviewers = PullRequest::decodeRequestedReviewers($data, "requested_reviewers");
-        $instance->requested_teams = Util::getArraySafe($data, "requested_teams", Team::fromArray(...));
-        $instance->labels = Util::getArraySafe($data, "requested_teams", Label::fromArray(...));
+        $instance->requested_teams = Util::getArraySafe($data, "requested_teams", Team::fromArray(...), []);
+        $instance->labels = Util::getArraySafe($data, "requested_teams", Label::fromArray(...), []);
         $instance->milestone = Util::getArgSafe($data, "milestone", Milestone::fromArray(...));
         $instance->commits_url = $data["commits_url"];
         $instance->review_comments_url = $data["review_comments_url"];

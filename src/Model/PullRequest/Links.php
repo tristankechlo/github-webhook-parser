@@ -2,28 +2,30 @@
 
 namespace TK\GitHubWebhook\Model\PullRequest;
 
+use TK\GitHubWebhook\Model\Link;
+
 readonly class Links
 {
-    public string $self;
-    public string $html;
-    public string $issue;
-    public string $comments;
-    public string $review_comments;
-    public string $review_comment;
-    public string $commits;
-    public string $statuses;
+    public Link $self;
+    public Link $html;
+    public Link $issue;
+    public Link $comments;
+    public Link $review_comments;
+    public Link $review_comment;
+    public Link $commits;
+    public Link $statuses;
 
     public static function fromArray(array $data): Links
     {
         $instance = new Links();
-        $instance->self = $data["self"];
-        $instance->html = $data["html"];
-        $instance->issue = $data["issue"];
-        $instance->comments = $data["comments"];
-        $instance->review_comments = $data["review_comments"];
-        $instance->review_comment = $data["review_comment"];
-        $instance->commits = $data["commits"];
-        $instance->statuses = $data["statuses"];
+        $instance->self = Link::fromArray($data["self"]);
+        $instance->html = Link::fromArray($data["html"]);
+        $instance->issue = Link::fromArray($data["issue"]);
+        $instance->comments = Link::fromArray($data["comments"]);
+        $instance->review_comments = Link::fromArray($data["review_comments"]);
+        $instance->review_comment = Link::fromArray($data["review_comment"]);
+        $instance->commits = Link::fromArray($data["commits"]);
+        $instance->statuses = Link::fromArray($data["statuses"]);
         return $instance;
     }
 }

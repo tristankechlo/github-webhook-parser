@@ -3,10 +3,15 @@
 namespace TK\GitHubWebhook\Model;
 
 use TK\GitHubWebhook\Model\Issue\LockReason;
-use TK\GitHubWebhook\Model\Issue\IssueState;
 use TK\GitHubWebhook\Model\Issue\AuthorAssociation;
 use TK\GitHubWebhook\Model\Issue\PullRequestLite;
 use TK\GitHubWebhook\Util;
+
+enum IssueState: string
+{
+    case OPEN = "open";
+    case CLOSED = "closed";
+}
 
 readonly class Issue
 {

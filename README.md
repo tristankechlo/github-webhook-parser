@@ -48,7 +48,7 @@ try {
 
 namespace Your\Custom;
 
-use TK\GitHubWebhook\Event\EventType;
+use TK\GitHubWebhook\Event\EventTypes;
 use TK\GitHubWebhook\Event\PingEvent;
 use TK\GitHubWebhook\Event\AbstractEvent;
 use TK\GitHubWebhook\Handler\EventHandlerInterface;
@@ -59,10 +59,10 @@ class PingHandler implements EventHandlerInterface
 
     public function getTargetEvent(): array
     {
-        return [EventType::PING];
+        return [EventTypes::PING];
     }
 
-    public function handleEvent(EventType $event_type, AbstractEvent $event, Response $response): Response
+    public function handleEvent(EventTypes $event_type, AbstractEvent $event, Response $response): Response
     {
         if ($event instanceof PingEvent) {
             $response->setStatusCode(200);
