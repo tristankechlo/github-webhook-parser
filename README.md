@@ -9,6 +9,7 @@ can parse a recieved json from github's webhook service
 - all pull_request events
 - fork
 - push
+- star
 
 ## Source
 

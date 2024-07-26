@@ -10,4 +10,5 @@ enum EventType: string
     case PULL_REQUEST = "pull_request";
     case FORK = "fork";
     case PUSH = "push";
+    case STAR = "star";
 }
