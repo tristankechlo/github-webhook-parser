@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.1 - 2024-07-26
+
+- add option to register handler that get's executed when the event is unknown
+
 ## 1.1.0 - 2024-07-26
 
 - support for all `issue` events

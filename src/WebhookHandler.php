@@ -9,23 +9,23 @@ use TK\GitHubWebhook\Exception\WebhookException;
 use TK\GitHubWebhook\Exception\WebhookParseException;
 use TK\GitHubWebhook\Handler\DefaultHandler;
 use TK\GitHubWebhook\Handler\EventHandlerInterface;
+use TK\GitHubWebhook\Handler\EventNotFoundHandler;
 
+enum WebhookType: string
+{
+    case REPOSITORY = "repository";
+    case ORGANIZATION = "organization";
+}
 
 class WebhookHandler
 {
     private EventTypes $event;
     private string|null $secret = null;
-    /** @var \TK\GitHubWebhook\Handler\EventHandlerInterface[] $handler */
+    /** @var EventHandlerInterface[] $handler */
     private array $handler = [];
-
-    public function __construct()
-    {
-        try {
-            $this->event = EventTypes::from($_SERVER['HTTP_X_GITHUB_EVENT']);
-        } catch (\Throwable $e) {
-            throw new WebhookException("Event '" . $_SERVER['HTTP_X_GITHUB_EVENT'] . "' is not yet supported!");
-        }
-    }
+    private string $uuid; // unique message id, can be used to detect redeliveries
+    private WebhookType $webhook_type; // detect if webhook is installed in repo or org
+    private EventNotFoundHandler|null $event_not_found_handler = null; // called when the event is not supported
 
     public function setSecret(string|null $secret)
     {
@@ -42,13 +42,39 @@ class WebhookHandler
         $this->handler = array_merge($this->handler, $handlers);
     }
 
+    public function setEventNotFoundHandler(EventNotFoundHandler $handler)
+    {
+        $this->event_not_found_handler = $handler;
+    }
+
+    private function readHeaders(array $json)
+    {
+        $event_raw = $_SERVER['HTTP_X_GITHUB_EVENT'];
+        try {
+            $this->event = EventTypes::from($event_raw);
+        } catch (\Throwable $e) {
+            if ($this->event_not_found_handler !== null) {
+                $response = $this->event_not_found_handler->handleEvent($event_raw, $json, new Response());
+                $this->exit($response);
+            }
+            throw new WebhookException("Event '" . $event_raw . "' is not yet supported!");
+        }
+        $this->uuid = $_SERVER["HTTP_X_GITHUB_DELIVERY"];
+        $this->webhook_type = WebhookType::from($_SERVER["HTTP_X_GITHUB_HOOK_INSTALLATION_TARGET_TYPE"]);
+    }
+
     public function handle(): never
     {
-        // read and parse json
+        // read json from request body
         $json = $this->readAndVerifyJson();
         if ($json === null or !is_array($json)) {
             throw new WebhookParseException("Data was not read correctly!");
         }
+
+        // read needed request headers
+        $this->readHeaders($json);
+
+        // parse json into corresponding classes
         $input = $this->parse((array) $json);
         if ($input === null or !is_object($input) or !($input instanceof AbstractEvent)) {
             throw new WebhookParseException("Data was not parsed correctly!");
@@ -66,13 +92,12 @@ class WebhookHandler
         $response = new Response();
         foreach ($target_handlers as $handler) {
             if (!($handler instanceof EventHandlerInterface)) {
-                throw new WebhookException("Regsitered handler '" . get_class($handler) . "' is not of correct type 'EventHandlerInterface'.");
+                throw new WebhookException("Registered handler '" . get_class($handler) . "' is not of correct type 'EventHandlerInterface'.");
             }
             $response = $handler->handleEvent($this->event, $input, $response);
         }
 
-        header($response->getFormattedHeader());
-        exit($response->getMessage());
+        $this->exit($response);
     }
 
     private function readAndVerifyJson(): array|null
@@ -120,5 +145,11 @@ class WebhookHandler
 
         // parse as object
         return call_user_func([$target_parser, "fromArray"], $json);
+    }
+
+    private function exit(Response $response): never
+    {
+        header($response->getFormattedHeader());
+        exit($response->getMessage());
     }
 }

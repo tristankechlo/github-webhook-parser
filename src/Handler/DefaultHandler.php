@@ -6,6 +6,7 @@ use TK\GitHubWebhook\Event\AbstractEvent;
 use TK\GitHubWebhook\Event\EventTypes;
 use TK\GitHubWebhook\Response;
 
+/** will be used as event handler, when no handler was registered */
 class DefaultHandler implements EventHandlerInterface
 {
 
