@@ -2,7 +2,7 @@
 
 namespace TK\GitHubWebhook\Model\PullRequest;
 
-enum PullRequestAction: string
+enum EventTypes: string
 {
     case ASSIGNED = "assigned";
     case AUTO_MERGE_DISABLED = "auto_merge_disabled";

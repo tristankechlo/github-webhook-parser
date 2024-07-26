@@ -2,7 +2,7 @@
 
 namespace TK\GitHubWebhook\Model\Issue;
 
-enum IssueState: string
+enum EventTypes: string
 {
     case ASSIGNED = "assigned";
     case CLOSED = "closed";

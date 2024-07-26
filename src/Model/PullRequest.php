@@ -3,9 +3,9 @@
 namespace TK\GitHubWebhook\Model;
 
 use TK\GitHubWebhook\Model\Issue\AuthorAssociation;
-use TK\GitHubWebhook\Model\PullRequest\PullRequestAutoMerge;
-use TK\GitHubWebhook\Model\PullRequest\PullRequestLinks;
-use TK\GitHubWebhook\Model\PullRequest\PullRequestTarget;
+use TK\GitHubWebhook\Model\PullRequest\AutoMerge;
+use TK\GitHubWebhook\Model\PullRequest\Links;
+use TK\GitHubWebhook\Model\PullRequest\Target;
 use TK\GitHubWebhook\Util;
 
 enum PullRequestState: string
@@ -57,11 +57,11 @@ readonly class PullRequest
     public string $review_comment_url;
     public string $comments_url;
     public string $statuses_url;
-    public PullRequestTarget $head;
-    public PullRequestTarget $base;
-    public PullRequestLinks $_links;
+    public Target $head;
+    public Target $base;
+    public Links $_links;
     public AuthorAssociation $author_association;
-    public PullRequestAutoMerge $auto_merge;
+    public AutoMerge $auto_merge;
     public ActiveLockReason|null $active_lock_reason;
     public bool $draft;
     public bool|null $merged;
@@ -109,11 +109,11 @@ readonly class PullRequest
         $instance->review_comment_url = $data["review_comment_url"];
         $instance->comments_url = $data["comments_url"];
         $instance->statuses_url = $data["statuses_url"];
-        $instance->head = Util::getArgSafe($data, "head", PullRequestTarget::fromArray(...));
-        $instance->base = Util::getArgSafe($data, "base", PullRequestTarget::fromArray(...));
-        $instance->_links = Util::getArgSafe($data, "_links", PullRequestLinks::fromArray(...));
+        $instance->head = Util::getArgSafe($data, "head", Target::fromArray(...));
+        $instance->base = Util::getArgSafe($data, "base", Target::fromArray(...));
+        $instance->_links = Util::getArgSafe($data, "_links", Links::fromArray(...));
         $instance->author_association = AuthorAssociation::from($data["author_association"]);
-        $instance->auto_merge = Util::getArgSafe($data, "auto_merge", PullRequestAutoMerge::fromArray(...));
+        $instance->auto_merge = Util::getArgSafe($data, "auto_merge", AutoMerge::fromArray(...));
         $instance->active_lock_reason = ActiveLockReason::tryFrom($data["active_lock_reason"]);
         $instance->draft = $data["draft"];
         $instance->merged = $data["merged"] ?? null;

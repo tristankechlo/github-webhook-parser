@@ -6,7 +6,7 @@ use TK\GitHubWebhook\Model\Repository;
 use TK\GitHubWebhook\Model\User;
 use TK\GitHubWebhook\Util;
 
-readonly class PullRequestTarget
+readonly class Target
 {
     public string $label;
     public string $ref;
@@ -14,9 +14,9 @@ readonly class PullRequestTarget
     public User $user;
     public Repository|null $repo;
 
-    public static function fromArray(array $data): PullRequestTarget
+    public static function fromArray(array $data): Target
     {
-        $instance = new PullRequestTarget();
+        $instance = new Target();
         $instance->label = $data["label"];
         $instance->ref = $data["ref"];
         $instance->sha = $data["sha"];

@@ -6,7 +6,7 @@ use TK\GitHubWebhook\Event\AbstractEvent;
 use TK\GitHubWebhook\Model\Issue\Changes;
 use TK\GitHubWebhook\Model\InstallationLite;
 use TK\GitHubWebhook\Model\Issue;
-use TK\GitHubWebhook\Model\Issue\IssueState;
+use TK\GitHubWebhook\Model\Issue\EventTypes;
 use TK\GitHubWebhook\Model\Label;
 use TK\GitHubWebhook\Model\Milestone;
 use TK\GitHubWebhook\Model\Repository;
@@ -15,7 +15,7 @@ use TK\GitHubWebhook\Util;
 
 class IssueEvent extends AbstractEvent
 {
-    public IssueState $action;
+    public EventTypes $action;
     public Issue $issue;
     public User|null $assignee;
     public InstallationLite|null $installation;
@@ -30,7 +30,7 @@ class IssueEvent extends AbstractEvent
         $organization = Util::getArgSafe($data, "organization", User::fromArray(...));
 
         $instance = new IssueEvent($repository, $sender, $organization);
-        $instance->action = IssueState::from($data["action"]);
+        $instance->action = EventTypes::from($data["action"]);
         $instance->issue = Issue::fromArray($data["issue"]);
         $instance->assignee = Util::getArgSafe($data, "assignee", User::fromArray(...));
         $instance->installation = Util::getArgSafe($data, "installation", InstallationLite::fromArray(...));

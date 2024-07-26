@@ -2,7 +2,7 @@
 
 namespace TK\GitHubWebhook\Model\PullRequest;
 
-readonly class PullRequestLinks
+readonly class Links
 {
     public string $self;
     public string $html;
@@ -13,9 +13,9 @@ readonly class PullRequestLinks
     public string $commits;
     public string $statuses;
 
-    public static function fromArray(array $data): PullRequestLinks
+    public static function fromArray(array $data): Links
     {
-        $instance = new PullRequestLinks();
+        $instance = new Links();
         $instance->self = $data["self"];
         $instance->html = $data["html"];
         $instance->issue = $data["issue"];

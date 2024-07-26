@@ -12,16 +12,16 @@ enum MergeMethod: string
     case REBASE = "rebase";
 }
 
-readonly class PullRequestAutoMerge
+readonly class AutoMerge
 {
     public User|null $enabled_by;
     public MergeMethod $merge_method;
     public string|null $commit_title;
     public string|null $commit_message;
 
-    public static function fromArray(array $data): PullRequestAutoMerge
+    public static function fromArray(array $data): AutoMerge
     {
-        $instance = new PullRequestAutoMerge();
+        $instance = new AutoMerge();
         $instance->enabled_by = Util::getArgSafe($data, "enabled_by", User::fromArray(...));
         $instance->merge_method = MergeMethod::from($data["merge_method"]);
         $instance->commit_title = $data["commit_title"] ?? null;
