@@ -31,7 +31,6 @@ readonly class Issue
     public LockReason|null $active_lock_reason;
     public string|null $body;
     public Reactions $reactions;
-
     public bool|null $draft;
     public App|null $performed_via_github_app;
     /** @var Label[] $labels */
@@ -67,6 +66,21 @@ readonly class Issue
         $instance->author_association = AuthorAssociation::from($data["author_association"]);
         $instance->active_lock_reason = LockReason::tryFrom($data["active_lock_reason"]);
         $instance->body = $data["body"] ?? null;
+        $instance->reactions = Reactions::fromArray($data["reactions"]);
+        $instance->draft = $data["draft"] ?? null;
+        $instance->performed_via_github_app = array_key_exists("performed_via_github_app", $data) ? App::fromArray($data["performed_via_github_app"]) : null;
+        $instance->labels = null;
+        if(array_key_exists("labels", $data) and !empty($data["labels"])) {
+            $instance->labels = array_map(function ($entry) {
+                return Label::fromArray($entry);
+            }, $data["labels"]);
+        }
+        $instance->state = IssueState::tryFrom($data["state"]);
+        $instance->locked = $data["locked"] ?? null;
+        $instance->assignee = $data["assignee"] ?? null;
+        $instance->pull_request = array_key_exists("pull_request", $data) ? PullRequestLite::fromArray($data["pull_request"]) : null;
+        $instance->timeline_url = $data["timeline_url"] ?? null;
+        $instance->state_reason = $data["state_reason"] ?? null;
         return $instance;
     }
 }

@@ -9,5 +9,9 @@ readonly class InstallationLite
 
     public static function fromArray(array $data): InstallationLite
     {
+        $instance = new InstallationLite();
+        $instance->id = $data["id"];
+        $instance->node_id = $data["node_id"];
+        return $instance;
     }
 }

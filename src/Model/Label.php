@@ -14,5 +14,14 @@ readonly class Label
 
     public static function fromArray(array $data): Label
     {
+        $instance = new Label();
+        $instance->id = $data["id"];
+        $instance->node_id = $data["node_id"];
+        $instance->url = $data["url"];
+        $instance->name = $data["name"];
+        $instance->description = $data["description"] ?? null;
+        $instance->color = $data["color"];
+        $instance->default = $data["default"];
+        return $instance;
     }
 }

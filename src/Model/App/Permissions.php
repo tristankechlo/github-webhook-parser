@@ -52,5 +52,46 @@ readonly class Permissions
 
     public static function fromArray(array $data): Permissions
     {
+        $instance = new Permissions();
+        $instance->actions = PermissionState::tryFrom($data["actions"]);
+        $instance->administration = PermissionState::tryFrom($data["administration"]);
+        $instance->blocking = PermissionState::tryFrom($data["blocking"]);
+        $instance->checks = PermissionState::tryFrom($data["checks"]);
+        $instance->content_references = PermissionState::tryFrom($data["content_references"]);
+        $instance->contents = PermissionState::tryFrom($data["contents"]);
+        $instance->deployments = PermissionState::tryFrom($data["deployments"]);
+        $instance->discussions = PermissionState::tryFrom($data["discussions"]);
+        $instance->emails = PermissionState::tryFrom($data["emails"]);
+        $instance->environments = PermissionState::tryFrom($data["environments"]);
+        $instance->followers = PermissionState::tryFrom($data["followers"]);
+        $instance->gpg_keys = PermissionState::tryFrom($data["gpg_keys"]);
+        $instance->interaction_limits = PermissionState::tryFrom($data["interaction_limits"]);
+        $instance->issues = PermissionState::tryFrom($data["issues"]);
+        $instance->keys = PermissionState::tryFrom($data["keys"]);
+        $instance->members = PermissionState::tryFrom($data["members"]);
+        $instance->merge_queues = PermissionState::tryFrom($data["merge_queues"]);
+        $instance->metadata = PermissionState::tryFrom($data["metadata"]);
+        $instance->organization_administration = PermissionState::tryFrom($data["organization_administration"]);
+        $instance->organization_hooks = PermissionState::tryFrom($data["organization_hooks"]);
+        $instance->organization_packages = PermissionState::tryFrom($data["organization_packages"]);
+        $instance->organization_plan = PermissionState::tryFrom($data["organization_plan"]);
+        $instance->organization_projects = PermissionState::tryFrom($data["organization_projects"]);
+        $instance->organization_secrets = PermissionState::tryFrom($data["organization_secrets"]);
+        $instance->organization_self_hosted_runners = PermissionState::tryFrom($data["organization_self_hosted_runners"]);
+        $instance->organization_user_blocking = PermissionState::tryFrom($data["organization_user_blocking"]);
+        $instance->packages = PermissionState::tryFrom($data["packages"]);
+        $instance->plan = PermissionState::tryFrom($data["plan"]);
+        $instance->pull_requests = PermissionState::tryFrom($data["pull_requests"]);
+        $instance->repository_hooks = PermissionState::tryFrom($data["repository_hooks"]);
+        $instance->repository_projects = PermissionState::tryFrom($data["repository_projects"]);
+        $instance->secret_scanning_alerts = PermissionState::tryFrom($data["secret_scanning_alerts"]);
+        $instance->single_file = PermissionState::tryFrom($data["single_file"]);
+        $instance->starring = PermissionState::tryFrom($data["starring"]);
+        $instance->statues = PermissionState::tryFrom($data["statues"]);
+        $instance->team_discussions = PermissionState::tryFrom($data["team_discussions"]);
+        $instance->vulnerability_alerts = PermissionState::tryFrom($data["vulnerability_alerts"]);
+        $instance->watching = PermissionState::tryFrom($data["watching"]);
+        $instance->workflows = PermissionState::tryFrom($data["workflows"]);
+        return $instance;
     }
 }
