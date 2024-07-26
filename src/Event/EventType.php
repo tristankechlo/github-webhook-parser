@@ -6,4 +6,5 @@ enum EventType: string
 {
     case ALL = "all";
     case PING = "ping";
+    case ISSUE = "issue";
 }
