@@ -1,6 +1,6 @@
 <?php
 
-namespace TK\GitHubWebhook\Model\PullRequest;
+namespace TK\GitHubWebhook\Model\Common;
 
 use TK\GitHubWebhook\Model\Common\User;
 use TK\GitHubWebhook\Util;

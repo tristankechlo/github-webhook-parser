@@ -2,8 +2,8 @@
 
 namespace TK\GitHubWebhook\Model\Common;
 
-use TK\GitHubWebhook\Model\Issue\AuthorAssociation;
-use TK\GitHubWebhook\Model\PullRequest\AutoMerge;
+use TK\GitHubWebhook\Model\Common\AuthorAssociation;
+use TK\GitHubWebhook\Model\Common\AutoMerge;
 use TK\GitHubWebhook\Model\PullRequest\Links;
 use TK\GitHubWebhook\Model\PullRequest\Target;
 use TK\GitHubWebhook\Util;

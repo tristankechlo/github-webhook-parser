@@ -2,7 +2,7 @@
 
 namespace TK\GitHubWebhook\Model\IssueComment;
 
-use TK\GitHubWebhook\Model\Common\From;
+use TK\GitHubWebhook\Model\Common\From\From;
 use TK\GitHubWebhook\Util;
 
 readonly class Changes

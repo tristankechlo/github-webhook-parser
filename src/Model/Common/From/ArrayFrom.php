@@ -1,6 +1,6 @@
 <?php
 
-namespace TK\GitHubWebhook\Model\Common;
+namespace TK\GitHubWebhook\Model\Common\From;
 
 use TK\GitHubWebhook\Util;
 

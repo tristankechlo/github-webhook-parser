@@ -2,7 +2,7 @@
 
 namespace TK\GitHubWebhook\Model\Issue;
 
-use TK\GitHubWebhook\Model\Common\From;
+use TK\GitHubWebhook\Model\Common\From\From;
 use TK\GitHubWebhook\Model\Common\Issue;
 use TK\GitHubWebhook\Model\Common\Repository;
 use TK\GitHubWebhook\Util;

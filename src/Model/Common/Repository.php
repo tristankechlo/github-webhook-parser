@@ -2,6 +2,7 @@
 
 namespace TK\GitHubWebhook\Model\Common;
 
+use TK\GitHubWebhook\Model\Repository\RepositoryPermissions;
 use TK\GitHubWebhook\Util;
 
 enum RepositoryVisibility: string

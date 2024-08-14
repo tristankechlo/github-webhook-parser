@@ -3,7 +3,7 @@
 namespace TK\GitHubWebhook\Model\Common;
 
 use TK\GitHubWebhook\Model\Issue\LockReason;
-use TK\GitHubWebhook\Model\Issue\AuthorAssociation;
+use TK\GitHubWebhook\Model\Common\AuthorAssociation;
 use TK\GitHubWebhook\Model\Issue\PullRequestLite;
 use TK\GitHubWebhook\Util;
 

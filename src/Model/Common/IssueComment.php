@@ -2,7 +2,7 @@
 
 namespace TK\GitHubWebhook\Model\Common;
 
-use TK\GitHubWebhook\Model\Issue\AuthorAssociation;
+use TK\GitHubWebhook\Model\Common\AuthorAssociation;
 use TK\GitHubWebhook\Util;
 
 /** The [comment](https://docs.github.com/en/rest/reference/issues#comments) itself. */
