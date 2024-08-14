@@ -3,10 +3,6 @@
 namespace TK\GitHubWebhook\Event;
 
 use TK\GitHubWebhook\Model\Create\RefType;
-use TK\GitHubWebhook\Model\Common\InstallationLite;
-use TK\GitHubWebhook\Model\Common\Repository;
-use TK\GitHubWebhook\Model\Common\User;
-use TK\GitHubWebhook\Util;
 
 class CreateEvent extends AbstractEvent
 {
@@ -18,17 +14,13 @@ class CreateEvent extends AbstractEvent
 
     public static  function fromArray(array $data): CreateEvent
     {
-        $repository = Util::getArgSafe($data, "repository", Repository::fromArray(...));
-        $sender = Util::getArgSafe($data, "sender", User::fromArray(...));
-        $organization = Util::getArgSafe($data, "organization", User::fromArray(...));
-
-        $instance = new CreateEvent($repository, $sender, $organization);
+        /** @var CreateEvent $instance */
+        $instance = AbstractEvent::createInstance($data, CreateEvent::class);
         $instance->ref = $data["ref"];
         $instance->ref_type = RefType::from($data["ref_type"]);
         $instance->master_branch = $data["master_branch"];
         $instance->description = $data["description"] ?? null;
         $instance->pusher_type = $data["pusher_type"];
-        $instance->installation = Util::getArgSafe($data, "installation", InstallationLite::fromArray(...));
         return $instance;
     }
 }

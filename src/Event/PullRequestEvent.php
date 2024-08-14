@@ -2,13 +2,11 @@
 
 namespace TK\GitHubWebhook\Event;
 
-use TK\GitHubWebhook\Model\Common\InstallationLite;
 use TK\GitHubWebhook\Model\Common\Label;
 use TK\GitHubWebhook\Model\Common\Milestone;
 use TK\GitHubWebhook\Model\Common\PullRequest;
 use TK\GitHubWebhook\Model\PullRequest\EventTypes;
 use TK\GitHubWebhook\Model\PullRequest\Changes;
-use TK\GitHubWebhook\Model\Common\Repository;
 use TK\GitHubWebhook\Model\Common\Team;
 use TK\GitHubWebhook\Model\Common\User;
 use TK\GitHubWebhook\Util;
@@ -30,11 +28,8 @@ class PullRequestEvent extends AbstractEvent
 
     public static function fromArray(array $data): PullRequestEvent
     {
-        $repository = Util::getArgSafe($data, "repository", Repository::fromArray(...));
-        $sender = Util::getArgSafe($data, "sender", User::fromArray(...));
-        $organization = Util::getArgSafe($data, "organization", User::fromArray(...));
-
-        $instance = new PullRequestEvent($repository, $sender, $organization);
+        /** @var PullRequestEvent $instance */
+        $instance = AbstractEvent::createInstance($data, PullRequestEvent::class);
         $instance->action = EventTypes::from($data["action"]);
         $instance->number = $data["number"];
         $instance->pull_request = PullRequest::fromArray($data["pull_request"]);
@@ -47,7 +42,6 @@ class PullRequestEvent extends AbstractEvent
         $instance->requested_team = Util::getArgSafe($data, "requested_team", Team::fromArray(...));
         $instance->before = $data["before"];
         $instance->after = $data["after"];
-        $instance->installation = Util::getArgSafe($data, "installation", InstallationLite::fromArray(...));
         return $instance;
     }
 }

@@ -2,11 +2,7 @@
 
 namespace TK\GitHubWebhook\Event;
 
-use TK\GitHubWebhook\Model\Common\InstallationLite;
-use TK\GitHubWebhook\Model\Common\Repository;
 use TK\GitHubWebhook\Model\Star\EventTypes;
-use TK\GitHubWebhook\Model\Common\User;
-use TK\GitHubWebhook\Util;
 
 class StarEvent extends AbstractEvent
 {
@@ -15,14 +11,10 @@ class StarEvent extends AbstractEvent
 
     public static function fromArray(array $data): StarEvent
     {
-        $repository = Util::getArgSafe($data, "repository", Repository::fromArray(...));
-        $sender = Util::getArgSafe($data, "sender", User::fromArray(...));
-        $organization = Util::getArgSafe($data, "organization", User::fromArray(...));
-
-        $instance = new StarEvent($repository, $sender, $organization);
+        /** @var StarEvent $instance */
+        $instance = AbstractEvent::createInstance($data, StarEvent::class);
         $instance->action = EventTypes::from($data["action"]);
         $instance->starred_at = $data["starred_at"] ?? null;
-        $instance->installation = Util::getArgSafe($data, "installation", InstallationLite::fromArray(...));
         return $instance;
     }
 }

@@ -3,12 +3,9 @@
 namespace TK\GitHubWebhook\Event;
 
 use TK\GitHubWebhook\Event\AbstractEvent;
-use TK\GitHubWebhook\Model\Common\InstallationLite;
 use TK\GitHubWebhook\Model\Common\Label;
 use TK\GitHubWebhook\Model\Label\Changes;
 use TK\GitHubWebhook\Model\Label\EventTypes;
-use TK\GitHubWebhook\Model\Common\Repository;
-use TK\GitHubWebhook\Model\Common\User;
 use TK\GitHubWebhook\Util;
 
 class LabelEvent extends AbstractEvent
@@ -19,14 +16,10 @@ class LabelEvent extends AbstractEvent
 
     public static function fromArray(array $data): LabelEvent
     {
-        $repository = Util::getArgSafe($data, "repository", Repository::fromArray(...));
-        $sender = Util::getArgSafe($data, "sender", User::fromArray(...));
-        $organization = Util::getArgSafe($data, "organization", User::fromArray(...));
-
-        $instance = new LabelEvent($repository, $sender, $organization);
+        /** @var LabelEvent $instance */
+        $instance = AbstractEvent::createInstance($data, LabelEvent::class);
         $instance->action = EventTypes::from($data["action"]);
         $instance->label = Util::getArgSafe($data, "label", Label::fromArray(...));
-        $instance->installation = Util::getArgSafe($data, "installation", InstallationLite::fromArray(...));
         return $instance;
     }
 }

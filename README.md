@@ -15,7 +15,7 @@ can parse a recieved json from github's webhook service
 - delete
 - label
 - release
-- issue_comment
+- issue_comment (this will also trigger for comments on pull requests)
 - repository
 
 ## Source

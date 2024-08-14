@@ -5,6 +5,7 @@ namespace TK\GitHubWebhook\Event;
 use TK\GitHubWebhook\Model\Common\InstallationLite;
 use TK\GitHubWebhook\Model\Common\Repository;
 use TK\GitHubWebhook\Model\Common\User;
+use TK\GitHubWebhook\Util;
 
 abstract class AbstractEvent
 {
@@ -19,6 +20,21 @@ abstract class AbstractEvent
         $this->repository = $repository;
         $this->sender = $sender;
         $this->organization = $organization;
+    }
+
+    protected static function createInstance(array $data, string $class): mixed
+    {
+        if (!class_exists($class)) {
+            throw new \InvalidArgumentException("Class '$class' is not available!");
+        }
+        $repository = Util::getArgSafe($data, "repository", Repository::fromArray(...));
+        $sender = Util::getArgSafe($data, "sender", User::fromArray(...));
+        $organization = Util::getArgSafe($data, "organization", User::fromArray(...));
+
+        /** @var AbstractEvent $instance */
+        $instance = new $class($repository, $sender, $organization);
+        $instance->installation = Util::getArgSafe($data, "installation", InstallationLite::fromArray(...));
+        return $instance;
     }
 
     public function getSender(): User|null
