@@ -7,10 +7,11 @@ enum EventTypes: string
     case ALL = "all";
     case CREATE = "create";
     case DELETE = "delete";
-    case PING = "ping";
-    case ISSUE = "issues";
-    case PULL_REQUEST = "pull_request";
     case FORK = "fork";
+    case ISSUE = "issues";
+    case LABEL = "label";
+    case PING = "ping";
+    case PULL_REQUEST = "pull_request";
     case PUSH = "push";
     case STAR = "star";
     case WATCH = "watch";

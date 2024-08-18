@@ -4,6 +4,7 @@
 
 - support for all `create` events
 - support for all `delete` events
+- support for all `label` events
 
 ## 1.1.2 - 2024-07-26
 

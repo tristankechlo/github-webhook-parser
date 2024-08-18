@@ -13,6 +13,7 @@ can parse a recieved json from github's webhook service
 - watch
 - create
 - delete
+- label
 
 ## Source
 
