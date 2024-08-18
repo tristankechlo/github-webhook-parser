@@ -5,8 +5,8 @@ can parse a recieved json from github's webhook service
 ## currently supported events
 
 - ping
-- all issue events
-- all pull_request events
+- issue
+- pull_request
 - fork
 - push
 - star
@@ -15,6 +15,7 @@ can parse a recieved json from github's webhook service
 - delete
 - label
 - release
+- issue_comment
 
 ## Source
 
