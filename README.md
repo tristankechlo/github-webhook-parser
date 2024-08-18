@@ -14,6 +14,7 @@ can parse a recieved json from github's webhook service
 - create
 - delete
 - label
+- release
 
 ## Source
 

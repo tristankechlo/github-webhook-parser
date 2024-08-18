@@ -6,6 +6,7 @@
 - support for all `delete` events
 - support for all `label` events
 - move some models into common namespace
+- support for all `release` events
 
 ## 1.1.2 - 2024-07-26
 

@@ -13,6 +13,7 @@ enum EventTypes: string
     case PING = "ping";
     case PULL_REQUEST = "pull_request";
     case PUSH = "push";
+    case RELEASE = "release";
     case STAR = "star";
     case WATCH = "watch";
 }
