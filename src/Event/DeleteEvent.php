@@ -6,8 +6,11 @@ use TK\GitHubWebhook\Model\Delete\RefType;
 
 class DeleteEvent extends AbstractEvent
 {
+    /** The [`git ref`](https://docs.github.com/en/rest/reference/git#get-a-reference) resource. */
     public string $ref;
+    /** The type of Git ref object deleted in the repository. Can be either `branch` or `tag`. */
     public RefType $ref_type;
+    /** The pusher type for the event. Can be either `user` or a deploy key. */
     public string $pusher_type;
 
     public static  function fromArray(array $data): DeleteEvent

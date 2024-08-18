@@ -4,6 +4,7 @@ namespace TK\GitHubWebhook\Model\Common;
 
 use TK\GitHubWebhook\Util;
 
+/** The [release](https://docs.github.com/en/rest/reference/repos/#get-a-release) object. */
 readonly class Release
 {
     public string $url;
@@ -12,11 +13,15 @@ readonly class Release
     public string $html_url;
     public int $id;
     public string $node_id;
+    /** The name of the tag. */
     public string $tag_name;
+    /** Specifies the commitish value that determines where the Git tag is created from. */
     public string $target_commitish;
     public string $name;
+    /** Whether the release is a draft or published */
     public bool $draft;
     public User $author;
+    /** Whether the release is identified as a prerelease or a full release. */
     public bool $prerelease;
     public string|null $created_at;
     public string|null $published_at;

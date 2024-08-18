@@ -2,9 +2,12 @@
 
 namespace TK\GitHubWebhook\Model\Common;
 
+/** Metaproperties for Git author/committer information. */
 readonly class Committer
 {
+    /** The git author's name. */
     public string $name;
+    /** The git author's email address. */
     public string|null $email;
     public string|null $date;
     public string|null $username;

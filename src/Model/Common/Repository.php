@@ -17,6 +17,7 @@ readonly class Repository
     public string $node_id;
     public string $name;
     public string $full_name;
+    /** Whether the repository is private or public. */
     public bool $private;
     public User $owner;
     public string $html_url;
@@ -79,6 +80,7 @@ readonly class Repository
     public bool|null $has_discussions;
     public int $forks_count;
     public string|null $mirror_url;
+    /** Whether the repository is archived. */
     public bool $archived;
     public bool|null $disabled;
     public int $open_issues_count;

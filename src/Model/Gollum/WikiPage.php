@@ -10,11 +10,20 @@ enum WikiPageAction: string
 
 readonly class WikiPage
 {
+    /** The name of the page. */
     public string $page_name;
+    /** The current page title. */
     public string $title;
-    public string|null $summary; // according to spec: always null
+    /**
+     * according to spec: always null, 
+     * try parsing anyway, incase a value is there
+     */
+    public string|null $summary;
+    /** The action that was performed on the page. Can be `created` or `edited`. */
     public WikiPageAction $action;
+    /** The latest commit SHA of the page. */
     public string $sha;
+    /** Points to the HTML wiki page. */
     public string $html_url;
 
     public static function fromArray(array $data): WikiPage

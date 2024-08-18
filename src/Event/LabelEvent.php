@@ -11,7 +11,9 @@ use TK\GitHubWebhook\Util;
 class LabelEvent extends AbstractEvent
 {
     public EventTypes $action;
+    /** The label that was added/removed/edited. */
     public Label $label;
+    /** The changes to the label if the action was `edited`. */
     public Changes $changes;
 
     public static function fromArray(array $data): LabelEvent

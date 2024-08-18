@@ -8,6 +8,7 @@ enum MilestoneState: string
     case CLOSED = "closed";
 }
 
+/** A collection of related issues and pull requests. */
 readonly class Milestone
 {
     public string $url;
@@ -15,12 +16,15 @@ readonly class Milestone
     public string $labels_url;
     public int $id;
     public string $node_id;
+    /** The number of the milestone. */
     public int $number;
+    /** The title of the milestone. */
     public string $title;
     public string|null $description;
     public User $creator;
     public int $open_issues;
     public int $closed_issues;
+    /** The state of the milestone. */
     public MilestoneState $state;
     public string $created_at;
     public string $updated_at;

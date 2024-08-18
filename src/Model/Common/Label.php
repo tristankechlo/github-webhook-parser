@@ -6,9 +6,12 @@ readonly class Label
 {
     public int $id;
     public string $node_id;
+    /** URL for the label */
     public string $url;
+    /** The name of the label. */
     public string $name;
     public string|null $description;
+    /** 6-character hex code, without the leading #, identifying the color */
     public string $color;
     public bool $default;
 

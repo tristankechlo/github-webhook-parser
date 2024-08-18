@@ -9,7 +9,9 @@ use TK\GitHubWebhook\Util;
 class PingEvent extends AbstractEvent
 {
     public string $zen;
+    /** The ID of the webhook that triggered the ping. */
     public int $hook_id;
+    /** The [webhook configuration](https://docs.github.com/en/rest/reference/repos#get-a-repository-webhook). */
     public Webhook $hook;
 
     public static function fromArray(array $data): PingEvent

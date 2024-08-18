@@ -7,7 +7,9 @@ use TK\GitHubWebhook\Util;
 
 readonly class Changes
 {
+    /** The previous version of the body if the action was `edited`. */
     public From|null $body;
+    /** The previous version of the name if the action was `edited`.The previous version of the name if the action was `edited`. */
     public From|null $name;
 
     public static function fromArray(array $data): Changes

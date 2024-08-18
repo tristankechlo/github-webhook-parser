@@ -4,20 +4,22 @@ can parse a recieved json from github's webhook service
 
 ## currently supported events
 
-- ping
-- issue
-- pull_request
-- fork
-- push
-- star
-- watch
-- create
-- delete
-- label
-- release
-- issue_comment (this will also trigger for comments on pull requests)
-- repository
-- gollum (a wiki page was updated or created)
+| event type    | description                                                | possible activity                                                                                                                                                                                                                                                                |
+| :------------ | :--------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| create        | A Git branch or tag is created.                            |                                                                                                                                                                                                                                                                                  |
+| delete        | A Git branch or tag is deleted.                            |                                                                                                                                                                                                                                                                                  |
+| fork          | A user forks a repository.                                 |                                                                                                                                                                                                                                                                                  |
+| gollum        | A wiki page has been edited or created.                    |                                                                                                                                                                                                                                                                                  |
+| issue_comment | Activity related to comments on issues or pull requests.   | created, deleted, edited                                                                                                                                                                                                                                                         |
+| issues        | Activity related to an issue.                              | assigned, closed, deleted, demilestoned, edited, labeled, locked, milestoned, opened, pinned, reopened, transferred, unassigned, unlabeled, unlocked, unpinned                                                                                                                   |
+| label         | Activity related to a label.                               | created, deleted, edited                                                                                                                                                                                                                                                         |
+| ping          | A new webhook was added to the repository or organization. |                                                                                                                                                                                                                                                                                  |
+| pull_request  | Activity related to a pull request.                        | assigned, auto_merge_disabled, auto_merge_enabled, closed, converted_to_draft, demilestoned, dequeued, edited, enqueued, labeled, locked, milestoned, opened, ready_for_review, reopened, review_request_removed, review_requested, synchronize, unassigned, unlabeled, unlocked |
+| push          | Commits are pushed to a repository.                        |                                                                                                                                                                                                                                                                                  |
+| release       | Activity related to a release.                             | created, deleted, edited, prereleased, published, released, unpublished                                                                                                                                                                                                          |
+| repository    | Activity related to the repository.                        | archived, created, deleted, edited, privatized, publicized, renamed, transferred, unarchived                                                                                                                                                                                     |
+| star          | A user stars or unstars a repository.                      | created, deleted                                                                                                                                                                                                                                                                 |
+| watch         | A user started watching a repository                       | started                                                                                                                                                                                                                                                                          |
 
 ## Source
 

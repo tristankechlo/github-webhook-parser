@@ -14,11 +14,14 @@ use TK\GitHubWebhook\Util;
 class PullRequestEvent extends AbstractEvent
 {
     public EventTypes $action;
+    /** The pull request number. */
     public int $number;
     public PullRequest $pull_request;
     public User|null $assignee;
+    /** The reason the pull request was removed from a merge queue. */
     public string|null $reason;
     public Milestone|null $milestone;
+    /** The changes to the comment if the action was `edited`. */
     public Changes|null $changes;
     public Label|null $label;
     public User|null $requested_reviewer;

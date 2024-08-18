@@ -17,20 +17,28 @@ enum TeamNotificationSettings: string
     case NOTIFICATIONS_DISABLED = "notifications_disabled";
 }
 
+/** Groups of organization members that gives permissions on specified repositories. */
 readonly class Team
 {
+    /** Name of the team */
     public string $name;
+    /** Unique identifier of the team */
     public int $id;
     public string $node_id;
     public string $slug;
+    /** Description of the team */
     public string|null $description;
     public TeamPrivacy $privacy;
+    /** URL for the team */
     public string $url;
     public string $html_url;
     public string $members_url;
     public string $repositories_url;
+    /** Permission that the team will have for its repositories */
     public string $permission;
+    /** can only have one layer of parents (a parent can not have a parent itself) */
     public Team|null $parent;
+    /** Whether team members will receive notifications when their team is @mentioned */
     public TeamNotificationSettings|null $notification_setting;
 
     public static function fromArray(array $data): Team

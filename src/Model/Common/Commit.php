@@ -8,17 +8,35 @@ readonly class Commit
 {
     public string $id;
     public string $tree_id;
+    /** Whether this commit is distinct from any that have been pushed before. */
     public bool $distinct;
+    /** The commit message. */
     public string $message;
+    /** The ISO 8601 timestamp of the commit. */
     public string $timestamp;
+    /** URL that points to the commit API resource. */
     public string $url;
+    /** Metaproperties for Git author information. */
     public Committer $author;
+    /** Metaproperties for Git committer information. */
     public Committer $committer;
-    /** @var string[] $added */
+    /**
+     * An array of files added in the commit.
+     * For extremely large commits where GitHub is unable to calculate this list in a timely manner, this may be empty even if files were added.
+     * @var string[] $added
+     */
     public array $added;
-    /** @var string[] $added */
+    /**
+     * An array of files modified by the commit.
+     * For extremely large commits where GitHub is unable to calculate this list in a timely manner, this may be empty even if files were modified.
+     * @var string[] $added
+     */
     public array $removed;
-    /** @var string[] $added */
+    /**
+     * An array of files removed in the commit.
+     * For extremely large commits where GitHub is unable to calculate this list in a timely manner, this may be empty even if files were removed.
+     * @var string[] $modified
+     */
     public array $modified;
 
     public static function fromArray(array $data): Commit

@@ -9,7 +9,9 @@ use TK\GitHubWebhook\Util;
 
 readonly class Changes
 {
+    /** The previous version of the body. */
     public From|null $body;
+    /** The previous version of the title. */
     public From|null $title;
     public Issue|null $old_issue;
     public Repository|null $old_repository;

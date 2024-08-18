@@ -31,9 +31,12 @@ readonly class PullRequest
     public string $diff_url;
     public string $patch_url;
     public string $issue_url;
+    /** Number uniquely identifying the pull request within its repository. */
     public int $number;
+    /** State of this Pull Request. Either `open` or `closed`. */
     public PullRequestState $state;
     public bool $locked;
+    /** The title of the pull request. */
     public string $title;
     public User $user;
     public string|null $body;
@@ -63,6 +66,7 @@ readonly class PullRequest
     public AuthorAssociation $author_association;
     public AutoMerge|null $auto_merge;
     public ActiveLockReason|null $active_lock_reason;
+    /** Indicates whether or not the pull request is a draft. */
     public bool $draft;
     public bool|null $merged;
     public bool|null $mergeable;
@@ -71,6 +75,7 @@ readonly class PullRequest
     public User|null $merged_by;
     public int $comments;
     public int $review_comments;
+    /** Indicates whether maintainers can modify the pull request. */
     public bool $maintainer_can_modify;
     public int $commits;
     public int $additions;

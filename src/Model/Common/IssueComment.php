@@ -5,11 +5,14 @@ namespace TK\GitHubWebhook\Model\Common;
 use TK\GitHubWebhook\Model\Issue\AuthorAssociation;
 use TK\GitHubWebhook\Util;
 
+/** The [comment](https://docs.github.com/en/rest/reference/issues#comments) itself. */
 readonly class IssueComment
 {
+    /** URL for the issue comment */
     public string $url;
     public string $html_url;
     public string $issue_url;
+    /** Unique identifier of the issue comment */
     public int $id;
     public string $node_id;
     public User $user;
@@ -17,6 +20,7 @@ readonly class IssueComment
     public string $updated_at;
     public AuthorAssociation $author_association;
     public App|null $performed_via_github_app;
+    /** Contents of the issue comment */
     public string $body;
     public Reactions $reactions;
 

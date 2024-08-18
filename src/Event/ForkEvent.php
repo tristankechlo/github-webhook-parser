@@ -7,6 +7,7 @@ use TK\GitHubWebhook\Util;
 
 class ForkEvent extends AbstractEvent
 {
+    /** The created [`repository`](https://docs.github.com/en/rest/reference/repos#get-a-repository) resource. */
     public Repository $forkee;
 
     public static function fromArray(array $data): ForkEvent

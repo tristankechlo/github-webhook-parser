@@ -8,7 +8,7 @@ use TK\GitHubWebhook\Util;
 class GollumEvent extends AbstractEvent
 {
     /** 
-     * the pages that got updated
+     * The pages that were updated.
      * @var WikiPage[] $pages 
      */
     public array $pages;

@@ -7,6 +7,7 @@ use TK\GitHubWebhook\Util;
 
 readonly class Changes
 {
+    /** The previous version of the body. */
     public From $body;
 
     public static function fromArray(array $data): Changes

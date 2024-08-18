@@ -17,6 +17,10 @@ readonly class Webhook
     public int $id;
     public string $name;
     public bool $active;
+    /**
+     * When you register a new GitHub App, GitHub sends a ping event to the **webhook URL** you specified during registration. 
+     * The event contains the `app_id`, which is required for [authenticating](https://docs.github.com/en/apps/building-integrations/setting-up-and-registering-github-apps/about-authentication-options-for-github-apps) an app.
+     */
     public int|null $app_id;
     /** @var string[] $events list of events this webhook is subsribed too (or "*" if subscribed to all)*/
     public array $events;

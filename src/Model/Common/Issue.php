@@ -13,8 +13,10 @@ enum IssueState: string
     case CLOSED = "closed";
 }
 
+/** The [issue](https://docs.github.com/en/rest/reference/issues) itself. */
 readonly class Issue
 {
+    /** URL for the issue */
     public string $url;
     public string $repository_url;
     public string $labels_url;
@@ -23,7 +25,9 @@ readonly class Issue
     public string $html_url;
     public int $id;
     public string $node_id;
+    /** Number uniquely identifying the issue within its repository */
     public int $number;
+    /** Title of the issue */
     public string $title;
     public User $user;
     /** @var User[] $assignees */
@@ -35,17 +39,20 @@ readonly class Issue
     public string|null $closed_at;
     public AuthorAssociation $author_association;
     public LockReason|null $active_lock_reason;
+    /** Contents of the issue */
     public string|null $body;
     public Reactions $reactions;
     public bool|null $draft;
     public App|null $performed_via_github_app;
     /** @var Label[] $labels */
     public array|null $labels;
+    /** State of the issue; either 'open' or 'closed' */
     public IssueState|null $state;
     public bool|null $locked;
     public User|null $assignee;
     public PullRequestLite|null $pull_request;
     public string|null $timeline_url;
+    /** The reason for the current state */
     public string|null $state_reason;
 
     public static function fromArray(array $data): Issue

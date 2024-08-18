@@ -13,11 +13,16 @@ use TK\GitHubWebhook\Util;
 
 class IssuesEvent extends AbstractEvent
 {
+    /** The action that was performed. */
     public EventTypes $action;
+    /** The [issue](https://docs.github.com/en/rest/reference/issues) itself. */
     public Issue $issue;
+    /** The optional user who was assigned or unassigned from the issue. */
     public User|null $assignee;
     public Milestone|null $milestone;
+    /** The label that was added/removed to the issue. */
     public Label|null $label;
+    /** The changes to the issue. */
     public Changes|null $changes;
 
     public static function fromArray(array $data): IssuesEvent

@@ -11,6 +11,7 @@ use TK\GitHubWebhook\Util;
 class IssueCommentEvent extends AbstractEvent
 {
     public EventTypes $action;
+    /** The [issue](https://docs.github.com/en/rest/reference/issues) the comment belongs to. */
     public Issue $issue;
     public IssueComment $comment;
     public Changes|null $changes;

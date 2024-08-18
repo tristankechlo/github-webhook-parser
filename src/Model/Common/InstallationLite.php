@@ -2,8 +2,10 @@
 
 namespace TK\GitHubWebhook\Model\Common;
 
+/** Installation */
 readonly class InstallationLite
 {
+    /** The ID of the installation. */
     public int $id;
     public string $node_id;
 

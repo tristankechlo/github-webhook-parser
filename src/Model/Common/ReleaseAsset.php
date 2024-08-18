@@ -9,14 +9,17 @@ enum ReleaseAssetState: string
     case UPLOADED = "uploaded";
 }
 
+/** Data related to a release. */
 readonly class ReleaseAsset
 {
     public string $url;
     public string $browser_download_url;
     public int $id;
     public string $node_id;
+    /** The file name of the asset. */
     public string $name;
     public string|null $label;
+    /** "State of the release asset. */
     public ReleaseAssetState $state;
     public string $content_type;
     public int $size;

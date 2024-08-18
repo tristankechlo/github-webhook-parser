@@ -6,20 +6,32 @@ use TK\GitHubWebhook\Model\App\Permissions;
 use TK\GitHubWebhook\Model\App\AppEvent;
 use TK\GitHubWebhook\Util;
 
+/**
+ * GitHub apps are a new way to extend GitHub.
+ * They can be installed directly on organizations and user accounts and granted access to specific repositories.
+ * They come with granular permissions and built-in webhooks. GitHub apps are first class actors within GitHub.
+ */
 readonly class App
 {
+    /** Unique identifier of the GitHub app */
     public int $id;
+    /** The slug name of the GitHub app */
     public string|null $slug;
     public string $node_id;
     public User $owner;
+    /** The name of the GitHub app */
     public string $name;
     public string|null $description;
     public string $external_url;
     public string $html_url;
     public string $created_at;
     public string $updated_at;
+    /** The set of permissions for the GitHub app" */
     public Permissions|null $permissions;
-    /** @var \TK\GitHubWebhook\Model\App\AppEvent[] $events */
+    /**
+     * The list of events for the GitHub app
+     * @var \TK\GitHubWebhook\Model\App\AppEvent[] $events
+     */
     public array $events;
 
     public static function fromArray(array $data): App
