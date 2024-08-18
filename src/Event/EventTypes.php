@@ -6,6 +6,7 @@ enum EventTypes: string
 {
     case ALL = "all";
     case CREATE = "create";
+    case DELETE = "delete";
     case PING = "ping";
     case ISSUE = "issues";
     case PULL_REQUEST = "pull_request";

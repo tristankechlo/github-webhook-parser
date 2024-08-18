@@ -3,6 +3,7 @@
 ## 1.1.3 - XX
 
 - support for all `create` events
+- support for all `delete` events
 
 ## 1.1.2 - 2024-07-26
 

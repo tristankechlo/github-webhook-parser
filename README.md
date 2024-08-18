@@ -12,6 +12,7 @@ can parse a recieved json from github's webhook service
 - star
 - watch
 - create
+- delete
 
 ## Source
 
