@@ -15,6 +15,7 @@ enum EventTypes: string
     case PULL_REQUEST = "pull_request";
     case PUSH = "push";
     case RELEASE = "release";
+    case REPOSITORY = "repository";
     case STAR = "star";
     case WATCH = "watch";
 }

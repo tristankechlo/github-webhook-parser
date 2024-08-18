@@ -16,6 +16,7 @@ can parse a recieved json from github's webhook service
 - label
 - release
 - issue_comment
+- repository
 
 ## Source
 

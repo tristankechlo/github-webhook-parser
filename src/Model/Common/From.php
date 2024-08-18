@@ -2,6 +2,11 @@
 
 namespace TK\GitHubWebhook\Model\Common;
 
+/**
+ * From
+ * 
+ * contains a string named 'from' that is expected to be present
+ */
 readonly class From
 {
     public string $from;
