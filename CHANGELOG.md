@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.2.0 - XX
+## 1.2.0 - 2024-08-18
 
 - support for all `create` events
 - support for all `delete` events
@@ -13,6 +13,7 @@
 - support for `gollum` event
 - add doc comments
 - create seperate class for organization
+- fix parsing of `before` and `after` of the `PullRequestEvent`
 
 ## 1.1.2 - 2024-07-26
 

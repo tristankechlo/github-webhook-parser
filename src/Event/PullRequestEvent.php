@@ -43,8 +43,8 @@ class PullRequestEvent extends AbstractEvent
         $instance->label = Util::getArgSafe($data, "label", Label::fromArray(...));
         $instance->requested_reviewer = Util::getArgSafe($data, "requested_reviewer", User::fromArray(...));
         $instance->requested_team = Util::getArgSafe($data, "requested_team", Team::fromArray(...));
-        $instance->before = $data["before"];
-        $instance->after = $data["after"];
+        $instance->before = $data["before"] ?? null;
+        $instance->after = $data["after"] ?? null;
         return $instance;
     }
 }
