@@ -9,6 +9,7 @@ enum EventTypes: string
     case DELETE = "delete";
     case FORK = "fork";
     case ISSUE = "issues";
+    case ISSUE_COMMENT = "issue_comment";
     case LABEL = "label";
     case PING = "ping";
     case PULL_REQUEST = "pull_request";
