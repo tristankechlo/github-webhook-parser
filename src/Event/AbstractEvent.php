@@ -27,6 +27,9 @@ abstract class AbstractEvent
         if (!class_exists($class)) {
             throw new \InvalidArgumentException("Class '$class' is not available!");
         }
+        if (!is_subclass_of($class, AbstractEvent::class)) {
+            throw new \InvalidArgumentException("Class '$class' is not a subclass of '" . AbstractEvent::class . "'");
+        }
         $repository = Util::getArgSafe($data, "repository", Repository::fromArray(...));
         $sender = Util::getArgSafe($data, "sender", User::fromArray(...));
         $organization = Util::getArgSafe($data, "organization", User::fromArray(...));
