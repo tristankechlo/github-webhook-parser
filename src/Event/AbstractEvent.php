@@ -3,6 +3,7 @@
 namespace TK\GitHubWebhook\Event;
 
 use TK\GitHubWebhook\Model\Common\InstallationLite;
+use TK\GitHubWebhook\Model\Common\Organization;
 use TK\GitHubWebhook\Model\Common\Repository;
 use TK\GitHubWebhook\Model\Common\User;
 use TK\GitHubWebhook\Util;
@@ -11,11 +12,11 @@ abstract class AbstractEvent
 {
     public Repository|null $repository;
     public User|null $sender;
-    public User|null $organization;
+    public Organization|null $organization;
     /** never present in PingEvent */
     public InstallationLite|null $installation;
 
-    protected function __construct(Repository|null $repository, User|null $sender, User|null $organization)
+    protected function __construct(Repository|null $repository, User|null $sender, Organization|null $organization)
     {
         $this->repository = $repository;
         $this->sender = $sender;
@@ -32,7 +33,7 @@ abstract class AbstractEvent
         }
         $repository = Util::getArgSafe($data, "repository", Repository::fromArray(...));
         $sender = Util::getArgSafe($data, "sender", User::fromArray(...));
-        $organization = Util::getArgSafe($data, "organization", User::fromArray(...));
+        $organization = Util::getArgSafe($data, "organization", Organization::fromArray(...));
 
         /** @var AbstractEvent $instance */
         $instance = new $class($repository, $sender, $organization);
@@ -50,7 +51,7 @@ abstract class AbstractEvent
         return $this->repository;
     }
 
-    public function getOrganization(): User|null
+    public function getOrganization(): Organization|null
     {
         return $this->organization;
     }

@@ -12,6 +12,7 @@
 - refactor how default values are parsed
 - support for `gollum` event
 - add doc comments
+- create seperate class for organization
 
 ## 1.1.2 - 2024-07-26
 

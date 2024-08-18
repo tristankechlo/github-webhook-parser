@@ -3,7 +3,7 @@
 namespace TK\GitHubWebhook\Event;
 
 use TK\GitHubWebhook\Model\Ping\{Webhook};
-use TK\GitHubWebhook\Model\Common\{User, Repository};
+use TK\GitHubWebhook\Model\Common\{Organization, User, Repository};
 use TK\GitHubWebhook\Util;
 
 class PingEvent extends AbstractEvent
@@ -18,7 +18,7 @@ class PingEvent extends AbstractEvent
     {
         $repository = Util::getArgSafe($data, "repository", Repository::fromArray(...));
         $sender = Util::getArgSafe($data, "sender", User::fromArray(...));
-        $organization = Util::getArgSafe($data, "organization", User::fromArray(...));
+        $organization = Util::getArgSafe($data, "organization", Organization::fromArray(...));
 
         $instance = new PingEvent($repository, $sender, $organization);
         $instance->zen = $data["zen"];
