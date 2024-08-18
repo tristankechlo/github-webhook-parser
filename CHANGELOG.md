@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.3 - XX
+
+- support for all `create` events
+
 ## 1.1.2 - 2024-07-26
 
 - combine inputs into Request class

@@ -5,6 +5,7 @@ namespace TK\GitHubWebhook\Event;
 enum EventTypes: string
 {
     case ALL = "all";
+    case CREATE = "create";
     case PING = "ping";
     case ISSUE = "issues";
     case PULL_REQUEST = "pull_request";

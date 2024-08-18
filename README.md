@@ -11,6 +11,7 @@ can parse a recieved json from github's webhook service
 - push
 - star
 - watch
+- create
 
 ## Source
 
