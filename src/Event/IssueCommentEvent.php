@@ -17,7 +17,6 @@ class IssueCommentEvent extends AbstractEvent
     public Issue $issue;
     public IssueComment $comment;
     public Changes|null $changes;
-    public InstallationLite|null $installation;
 
     public static function fromArray(array $data): IssueCommentEvent
     {

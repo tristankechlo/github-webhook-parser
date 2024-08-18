@@ -15,7 +15,6 @@ class ReleaseEvent extends AbstractEvent
     public EventTypes $action;
     public Release $release;
     public Changes|null $changes;
-    public InstallationLite|null $installation;
 
     public static  function fromArray(array $data): ReleaseEvent
     {

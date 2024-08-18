@@ -2,6 +2,7 @@
 
 namespace TK\GitHubWebhook\Event;
 
+use TK\GitHubWebhook\Model\Common\InstallationLite;
 use TK\GitHubWebhook\Model\Common\Repository;
 use TK\GitHubWebhook\Model\Common\User;
 
@@ -10,6 +11,8 @@ abstract class AbstractEvent
     public Repository|null $repository;
     public User|null $sender;
     public User|null $organization;
+    /** never present in PingEvent */
+    public InstallationLite|null $installation;
 
     protected function __construct(Repository|null $repository, User|null $sender, User|null $organization)
     {
@@ -31,5 +34,10 @@ abstract class AbstractEvent
     public function getOrganization(): User|null
     {
         return $this->organization;
+    }
+
+    public function getInstallationLite(): InstallationLite|null
+    {
+        return $this->installation;
     }
 }

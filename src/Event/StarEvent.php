@@ -12,7 +12,6 @@ class StarEvent extends AbstractEvent
 {
     public EventTypes $action;
     public string|null $starred_at;
-    public InstallationLite|null $installation;
 
     public static function fromArray(array $data): StarEvent
     {

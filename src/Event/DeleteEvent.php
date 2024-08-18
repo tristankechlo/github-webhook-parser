@@ -13,7 +13,6 @@ class DeleteEvent extends AbstractEvent
     public string $ref;
     public RefType $ref_type;
     public string $pusher_type;
-    public InstallationLite|null $installation;
 
     public static  function fromArray(array $data): DeleteEvent
     {

@@ -11,7 +11,6 @@ use TK\GitHubWebhook\Util;
 class WatchEvent extends AbstractEvent
 {
     public EventTypes $action;
-    public InstallationLite|null $installation;
 
     public static function fromArray(array $data): WatchEvent
     {

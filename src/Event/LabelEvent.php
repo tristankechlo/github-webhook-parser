@@ -16,7 +16,6 @@ class LabelEvent extends AbstractEvent
     public EventTypes $action;
     public Label $label;
     public Changes $changes;
-    public InstallationLite|null $installation;
 
     public static function fromArray(array $data): LabelEvent
     {

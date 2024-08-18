@@ -10,7 +10,6 @@ use TK\GitHubWebhook\Util;
 class ForkEvent extends AbstractEvent
 {
     public Repository $forkee;
-    public InstallationLite|null $installation;
 
     public static function fromArray(array $data): ForkEvent
     {

@@ -23,7 +23,6 @@ class PushEvent extends AbstractEvent
     public array|null $commits;
     public Commit|null $head_commit;
     public Committer $pusher;
-    public InstallationLite|null $installation;
 
     public static function fromArray(array $data): PushEvent
     {

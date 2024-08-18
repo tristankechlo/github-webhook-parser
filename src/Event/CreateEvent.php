@@ -15,7 +15,6 @@ class CreateEvent extends AbstractEvent
     public string $master_branch;
     public string|null $description;
     public string $pusher_type;
-    public InstallationLite|null $installation;
 
     public static  function fromArray(array $data): CreateEvent
     {

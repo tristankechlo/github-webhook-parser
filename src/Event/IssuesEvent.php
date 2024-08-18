@@ -18,7 +18,6 @@ class IssuesEvent extends AbstractEvent
     public EventTypes $action;
     public Issue $issue;
     public User|null $assignee;
-    public InstallationLite|null $installation;
     public Milestone|null $milestone;
     public Label|null $label;
     public Changes|null $changes;
@@ -33,10 +32,10 @@ class IssuesEvent extends AbstractEvent
         $instance->action = EventTypes::from($data["action"]);
         $instance->issue = Issue::fromArray($data["issue"]);
         $instance->assignee = Util::getArgSafe($data, "assignee", User::fromArray(...));
-        $instance->installation = Util::getArgSafe($data, "installation", InstallationLite::fromArray(...));
         $instance->milestone = Util::getArgSafe($data, "milestone", Milestone::fromArray(...));
         $instance->label = Util::getArgSafe($data, "label", Label::fromArray(...));
         $instance->changes = Util::getArgSafe($data, "changes", Changes::fromArray(...));
+        $instance->installation = Util::getArgSafe($data, "installation", InstallationLite::fromArray(...));
         return $instance;
     }
 }

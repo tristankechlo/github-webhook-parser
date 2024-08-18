@@ -20,7 +20,6 @@ class PullRequestEvent extends AbstractEvent
     public PullRequest $pull_request;
     public User|null $assignee;
     public string|null $reason;
-    public InstallationLite|null $installation;
     public Milestone|null $milestone;
     public Changes|null $changes;
     public Label|null $label;
@@ -41,7 +40,6 @@ class PullRequestEvent extends AbstractEvent
         $instance->pull_request = PullRequest::fromArray($data["pull_request"]);
         $instance->assignee = Util::getArgSafe($data, "assignee", User::fromArray(...));
         $instance->reason = $data["reason"] ?? null;
-        $instance->installation = Util::getArgSafe($data, "installation", InstallationLite::fromArray(...));
         $instance->milestone = Util::getArgSafe($data, "milestone", Milestone::fromArray(...));
         $instance->changes = Util::getArgSafe($data, "changes", Changes::fromArray(...));
         $instance->label = Util::getArgSafe($data, "label", Label::fromArray(...));
@@ -49,6 +47,7 @@ class PullRequestEvent extends AbstractEvent
         $instance->requested_team = Util::getArgSafe($data, "requested_team", Team::fromArray(...));
         $instance->before = $data["before"];
         $instance->after = $data["after"];
+        $instance->installation = Util::getArgSafe($data, "installation", InstallationLite::fromArray(...));
         return $instance;
     }
 }
