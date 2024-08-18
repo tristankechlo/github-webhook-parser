@@ -1,6 +1,6 @@
 <?php
 
-namespace TK\GitHubWebhook\Model;
+namespace TK\GitHubWebhook\Model\Common;
 
 readonly class User
 {

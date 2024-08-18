@@ -1,6 +1,6 @@
 <?php
 
-namespace TK\GitHubWebhook\Model;
+namespace TK\GitHubWebhook\Model\Common;
 
 use TK\GitHubWebhook\Model\Issue\LockReason;
 use TK\GitHubWebhook\Model\Issue\AuthorAssociation;

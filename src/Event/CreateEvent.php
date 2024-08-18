@@ -3,9 +3,9 @@
 namespace TK\GitHubWebhook\Event;
 
 use TK\GitHubWebhook\Model\Create\RefType;
-use TK\GitHubWebhook\Model\InstallationLite;
-use TK\GitHubWebhook\Model\Repository;
-use TK\GitHubWebhook\Model\User;
+use TK\GitHubWebhook\Model\Common\InstallationLite;
+use TK\GitHubWebhook\Model\Common\Repository;
+use TK\GitHubWebhook\Model\Common\User;
 use TK\GitHubWebhook\Util;
 
 class CreateEvent extends AbstractEvent

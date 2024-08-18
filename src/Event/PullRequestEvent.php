@@ -2,15 +2,15 @@
 
 namespace TK\GitHubWebhook\Event;
 
-use TK\GitHubWebhook\Model\InstallationLite;
-use TK\GitHubWebhook\Model\Label;
-use TK\GitHubWebhook\Model\Milestone;
-use TK\GitHubWebhook\Model\PullRequest;
+use TK\GitHubWebhook\Model\Common\InstallationLite;
+use TK\GitHubWebhook\Model\Common\Label;
+use TK\GitHubWebhook\Model\Common\Milestone;
+use TK\GitHubWebhook\Model\Common\PullRequest;
 use TK\GitHubWebhook\Model\PullRequest\EventTypes;
 use TK\GitHubWebhook\Model\PullRequest\Changes;
-use TK\GitHubWebhook\Model\Repository;
-use TK\GitHubWebhook\Model\Team;
-use TK\GitHubWebhook\Model\User;
+use TK\GitHubWebhook\Model\Common\Repository;
+use TK\GitHubWebhook\Model\Common\Team;
+use TK\GitHubWebhook\Model\Common\User;
 use TK\GitHubWebhook\Util;
 
 class PullRequestEvent extends AbstractEvent

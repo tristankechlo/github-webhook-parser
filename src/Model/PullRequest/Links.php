@@ -2,7 +2,7 @@
 
 namespace TK\GitHubWebhook\Model\PullRequest;
 
-use TK\GitHubWebhook\Model\Link;
+use TK\GitHubWebhook\Model\Common\Link;
 
 readonly class Links
 {

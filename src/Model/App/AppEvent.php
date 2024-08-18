@@ -2,7 +2,6 @@
 
 namespace TK\GitHubWebhook\Model\App;
 
-
 enum AppEvent: string
 {
     case BRANCH_PROTECTION_RULE = "branch_protection_rule";

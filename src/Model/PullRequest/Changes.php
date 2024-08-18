@@ -2,7 +2,7 @@
 
 namespace TK\GitHubWebhook\Model\PullRequest;
 
-use TK\GitHubWebhook\Model\Issue\From;
+use TK\GitHubWebhook\Model\Common\From;
 use TK\GitHubWebhook\Util;
 
 readonly class Changes

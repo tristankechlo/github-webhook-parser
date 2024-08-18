@@ -2,8 +2,8 @@
 
 namespace TK\GitHubWebhook\Model\PullRequest;
 
-use TK\GitHubWebhook\Model\Repository;
-use TK\GitHubWebhook\Model\User;
+use TK\GitHubWebhook\Model\Common\Repository;
+use TK\GitHubWebhook\Model\Common\User;
 use TK\GitHubWebhook\Util;
 
 readonly class Target

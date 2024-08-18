@@ -3,12 +3,12 @@
 namespace TK\GitHubWebhook\Event;
 
 use TK\GitHubWebhook\Event\AbstractEvent;
-use TK\GitHubWebhook\Model\InstallationLite;
-use TK\GitHubWebhook\Model\Label;
+use TK\GitHubWebhook\Model\Common\InstallationLite;
+use TK\GitHubWebhook\Model\Common\Label;
 use TK\GitHubWebhook\Model\Label\Changes;
 use TK\GitHubWebhook\Model\Label\EventTypes;
-use TK\GitHubWebhook\Model\Repository;
-use TK\GitHubWebhook\Model\User;
+use TK\GitHubWebhook\Model\Common\Repository;
+use TK\GitHubWebhook\Model\Common\User;
 use TK\GitHubWebhook\Util;
 
 class LabelEvent extends AbstractEvent

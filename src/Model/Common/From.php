@@ -1,6 +1,6 @@
 <?php
 
-namespace TK\GitHubWebhook\Model\Issue;
+namespace TK\GitHubWebhook\Model\Common;
 
 readonly class From
 {

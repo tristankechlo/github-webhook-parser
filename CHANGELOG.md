@@ -1,10 +1,11 @@
 # Changelog
 
-## 1.1.3 - XX
+## 1.2.0 - XX
 
 - support for all `create` events
 - support for all `delete` events
 - support for all `label` events
+- move some models into common namespace
 
 ## 1.1.2 - 2024-07-26
 

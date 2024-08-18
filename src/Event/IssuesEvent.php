@@ -4,13 +4,13 @@ namespace TK\GitHubWebhook\Event;
 
 use TK\GitHubWebhook\Event\AbstractEvent;
 use TK\GitHubWebhook\Model\Issue\Changes;
-use TK\GitHubWebhook\Model\InstallationLite;
-use TK\GitHubWebhook\Model\Issue;
+use TK\GitHubWebhook\Model\Common\InstallationLite;
+use TK\GitHubWebhook\Model\Common\Issue;
 use TK\GitHubWebhook\Model\Issue\EventTypes;
-use TK\GitHubWebhook\Model\Label;
-use TK\GitHubWebhook\Model\Milestone;
-use TK\GitHubWebhook\Model\Repository;
-use TK\GitHubWebhook\Model\User;
+use TK\GitHubWebhook\Model\Common\Label;
+use TK\GitHubWebhook\Model\Common\Milestone;
+use TK\GitHubWebhook\Model\Common\Repository;
+use TK\GitHubWebhook\Model\Common\User;
 use TK\GitHubWebhook\Util;
 
 class IssuesEvent extends AbstractEvent

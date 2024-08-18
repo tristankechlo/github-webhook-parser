@@ -3,7 +3,7 @@
 namespace TK\GitHubWebhook\Event;
 
 use TK\GitHubWebhook\Model\Ping\{Webhook};
-use TK\GitHubWebhook\Model\{User, Repository};
+use TK\GitHubWebhook\Model\Common\{User, Repository};
 use TK\GitHubWebhook\Util;
 
 class PingEvent extends AbstractEvent
