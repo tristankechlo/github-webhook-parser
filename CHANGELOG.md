@@ -10,6 +10,7 @@
 - support for all `issue_comment` events
 - support for all `repository` events
 - refactor how default values are parsed
+- support for `gollum` event
 
 ## 1.1.2 - 2024-07-26
 

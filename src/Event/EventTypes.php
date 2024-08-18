@@ -8,6 +8,7 @@ enum EventTypes: string
     case CREATE = "create";
     case DELETE = "delete";
     case FORK = "fork";
+    case GOLLUM = "gollum";
     case ISSUE = "issues";
     case ISSUE_COMMENT = "issue_comment";
     case LABEL = "label";

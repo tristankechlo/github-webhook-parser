@@ -17,6 +17,7 @@ can parse a recieved json from github's webhook service
 - release
 - issue_comment (this will also trigger for comments on pull requests)
 - repository
+- gollum (a wiki page was updated or created)
 
 ## Source
 
