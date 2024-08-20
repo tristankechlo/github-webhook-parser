@@ -17,7 +17,7 @@
         "issues": "https://github.com/tristankechlo/github-webhook-parser/issues"
     },
     "require": {
-        "php": ">=8.2"
+        "php": ">=8.0"
     },
     "config": {
         "optimize-autoloader": true
