@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.2.1 - XX
+## 1.2.1 - 2024-08-20
 
 - pass header `X-GitHub-Delivery` as `event_uuid` through the request
 - pass header `X-GitHub-Hook-Installation-Target-Type` as `webhook_type` through the request
