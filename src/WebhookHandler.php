@@ -11,19 +11,13 @@ use TK\GitHubWebhook\Handler\DefaultHandler;
 use TK\GitHubWebhook\Handler\EventHandlerInterface;
 use TK\GitHubWebhook\Handler\EventNotFoundHandler;
 
-enum WebhookType: string
-{
-    case REPOSITORY = "repository";
-    case ORGANIZATION = "organization";
-}
-
 class WebhookHandler
 {
     private EventTypes $event;
     private string|null $secret = null;
     /** @var EventHandlerInterface[] $handler */
     private array $handler = [];
-    private string $uuid; // unique message id, can be used to detect redeliveries
+    private string $event_uuid; // unique message id, can be used to detect redeliveries
     private WebhookType $webhook_type; // detect if webhook is installed in repo or org
     private EventNotFoundHandler|null $event_not_found_handler = null; // called when the event is not supported
 
@@ -59,7 +53,7 @@ class WebhookHandler
             }
             throw new WebhookException("Event '" . $event_raw . "' is not yet supported!");
         }
-        $this->uuid = $_SERVER["HTTP_X_GITHUB_DELIVERY"];
+        $this->event_uuid = $_SERVER["HTTP_X_GITHUB_DELIVERY"];
         $this->webhook_type = WebhookType::from($_SERVER["HTTP_X_GITHUB_HOOK_INSTALLATION_TARGET_TYPE"]);
     }
 
@@ -89,7 +83,7 @@ class WebhookHandler
             $target_handlers[] = new DefaultHandler();
         }
 
-        $request = new Request($this->event, $input, $json_raw);
+        $request = new Request($this->event_uuid, $this->webhook_type, $this->event, $input, $json_raw);
         $response = new Response();
         foreach ($target_handlers as $handler) {
             if (!($handler instanceof EventHandlerInterface)) {
@@ -132,7 +126,7 @@ class WebhookHandler
         // pull_request => PullRequestEvent
         $target_parser = preg_replace("/[^a-z\_]/", "", $this->event->value);
         $target_parser = explode("_", trim($target_parser));
-        $target_parser = array_map(fn ($str): string => ucfirst($str), $target_parser);
+        $target_parser = array_map(fn($str): string => ucfirst($str), $target_parser);
         $target_parser = implode($target_parser) . "Event";
         $target_parser = "TK\\GitHubWebhook\\Event\\" . $target_parser; // TODO redo
 

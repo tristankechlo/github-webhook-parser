@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.1 - XX
+
+- pass header `X-GitHub-Delivery` as `event_uuid` through the request
+- pass header `X-GitHub-Hook-Installation-Target-Type` as `webhook_type` through the request
+
 ## 1.2.0 - 2024-08-18
 
 - support for all `create` events
