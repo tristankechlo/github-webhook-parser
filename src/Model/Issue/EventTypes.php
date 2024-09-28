@@ -17,7 +17,7 @@ enum EventTypes: string
     case REOPENED = "reopened";
     case TRANSFERRED = "transferred";
     case UNASSIGNED = "unassigned";
-    case UNLABLED = "unlabled";
+    case UNLABELED = "unlabeled";
     case UNLOCKED = "unlocked";
     case UNPINNED = "unpinned";
 }

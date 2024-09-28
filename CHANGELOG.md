@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.2 - 2024-09-28
+
+- fix Issue-EventTypes (`unlabled` renamed to `unlabeled`)
+
 ## 1.2.1 - 2024-08-20
 
 - pass header `X-GitHub-Delivery` as `event_uuid` through the request
