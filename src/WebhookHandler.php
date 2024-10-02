@@ -43,7 +43,7 @@ class WebhookHandler
 
     private function readHeaders(array $json, string $json_raw)
     {
-        $event_raw = $_SERVER['HTTP_X_GITHUB_EVENT'];
+        $event_raw = strtolower($_SERVER['HTTP_X_GITHUB_EVENT']);
         try {
             $this->event = EventTypes::from($event_raw);
         } catch (\Throwable $e) {
@@ -53,8 +53,21 @@ class WebhookHandler
             }
             throw new WebhookException("Event '" . $event_raw . "' is not yet supported!");
         }
-        $this->event_uuid = $_SERVER["HTTP_X_GITHUB_DELIVERY"];
-        $this->webhook_type = WebhookType::from($_SERVER["HTTP_X_GITHUB_HOOK_INSTALLATION_TARGET_TYPE"]);
+
+        // parse event UUID
+        $uuid = strtolower($_SERVER["HTTP_X_GITHUB_DELIVERY"]);
+        if (!preg_match("/^[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}$/", $uuid)) {
+            throw new WebhookException("Header 'HTTP_X_GITHUB_DELIVERY' could not be parsed, not a valid UUID ($uuid)!");
+        }
+        $this->event_uuid = $uuid;
+
+        // parse the installation location of this webhook (repo/org)
+        $type = strtolower($_SERVER["HTTP_X_GITHUB_HOOK_INSTALLATION_TARGET_TYPE"]);
+        try {
+            $this->webhook_type = WebhookType::from($type);
+        } catch (\Throwable $e) {
+            throw new WebhookException("Header 'HTTP_X_GITHUB_HOOK_INSTALLATION_TARGET_TYPE' could no be parsed! Got '$type'");
+        }
     }
 
     public function handle(): never

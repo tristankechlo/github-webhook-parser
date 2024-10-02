@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.3 - 2024-10-02
+
+- improved parsing of values from headers
+    - check if the uuid provided by github has a valid format
+
 ## 1.2.2 - 2024-09-28
 
 - fix Issue-EventTypes (`unlabled` renamed to `unlabeled`)
